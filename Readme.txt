@@ -1,0 +1,1 @@
+This section contains code from Codewars Katas
