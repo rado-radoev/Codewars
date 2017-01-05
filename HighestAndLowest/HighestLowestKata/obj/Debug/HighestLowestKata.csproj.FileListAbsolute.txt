@@ -1,0 +1,6 @@
+C:\GitHub\Codewars\HighestAndLowest\HighestLowestKata\bin\Debug\HighestLowestKata.exe.config
+C:\GitHub\Codewars\HighestAndLowest\HighestLowestKata\bin\Debug\HighestLowestKata.exe
+C:\GitHub\Codewars\HighestAndLowest\HighestLowestKata\bin\Debug\HighestLowestKata.pdb
+C:\GitHub\Codewars\HighestAndLowest\HighestLowestKata\obj\Debug\HighestLowestKata.csprojResolveAssemblyReference.cache
+C:\GitHub\Codewars\HighestAndLowest\HighestLowestKata\obj\Debug\HighestLowestKata.exe
+C:\GitHub\Codewars\HighestAndLowest\HighestLowestKata\obj\Debug\HighestLowestKata.pdb
