@@ -1,0 +1,1 @@
+C:\GitHub\Codewars\Reducing by rules to get the result\Reduce\bin\Debug\Reduce.exe.config
