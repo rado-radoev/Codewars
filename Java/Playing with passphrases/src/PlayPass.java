@@ -34,36 +34,66 @@ public class PlayPass {
 		// for each odd letter number = char.toLower
 		// go through the array in reverse order and return
 		
-		StringBuilder sb = new StringBuilder(s);
-		
-		for (int i = 0; i < s.length(); i++) {
+//		
+//		char[] charArray = s.toUpperCase()
+//							.toCharArray();
+//		
+//		for (int i = 0; i < charArray.length; i++) {
+//			if (Character.isLetter(charArray[i])) {
+//				int currentChar = charArray[i] + n;
+//				
+//				while (!Character.isLetter()) {
+//					currentChar += n;
+//				}
+//				
+//				charArray[i] = (char)currentChar;
+//				
+//				if (i % 2 == 1) {
+//					charArray[i] = Character.toLowerCase(charArray[i]);
+//				}
+//			}
+//			else if (Character.isDigit(charArray[i])) {
+//				int currentDigit = Character.getNumericValue(charArray[i]);
+//				int complement = Math.abs(currentDigit - 9);
+//				charArray[i] = (char)(complement + '0');
+//			}
+//		}
+//		
+//		
+//		char[] newCharArray = new char[charArray.length];
+//		for (int i = charArray.length - 1; i >= 0; i--) {
+//			newCharArray[i] = charArray[charArray.length - 1 - i];
+//		}
+//		
+//		String str = new String().valueOf(newCharArray);
+//		return str;
 
-			
-			
-			if (Character.isLetter((sb.charAt(i)))) {
-				int charShift = sb.charAt(i) + n;
-				String shiftedChar = Integer.toString(charShift);
-				sb.replace(i, i, shiftedChar);
-			}
-			else if (Character.isDigit(sb.charAt(i))) {
-				char str = sb.charAt(i);
-				System.out.println(str);
-			}
-		
-		}
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (Character.isLetter(c)) {
+                if (i % 2 == 0) {
+                    c = String.valueOf(c).toUpperCase().charAt(0);
+                    if (c + n > 90) c += n - 26;
+                    else c += n;
+                }
+                else {
+                    c = String.valueOf(c).toLowerCase().charAt(0);
+                    if (c + n > 122) c += n - 26;
+                    else c += n;
+                }
+                result.append(c);
+            }
+            else if (Character.isDigit(c)) result.append(9 - Integer.parseInt(String.valueOf(c)));
+            else result.append(c);
+        }
+        return result.reverse().toString();
+    }
 
-		return sb.toString();
-	}
-	
-	
-	
-	
-	
+
 	
 	public static void main(String[] args) {
-		playPass("I LOVE 123!!!", 1);
+		System.out.print(playPass("MY GRANMA CAME FROM NY ON THE 23RD OF APRIL 2015", 2));		
 	}
-	
-	
-
 }
+ 

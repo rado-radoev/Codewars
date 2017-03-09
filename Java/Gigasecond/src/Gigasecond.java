@@ -1,19 +1,18 @@
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
 
 public class Gigasecond{
-    private static int gigaseconds = 1000000000;
-    public LocalDateTime birthdate;
+    private static int gigaseconds = 10 ^ 9;
+    private LocalDateTime birthday;
+    
     public Gigasecond(LocalDate birthdate){
-        this.birthdate = birthdate.atStartOfDay();
+        this.birthday = birthdate.atStartOfDay();
     }
 
     public Gigasecond(LocalDateTime birthdate){
-        this.birthdate = birthdate;
+        this.birthday = birthdate;
     }
 
     public LocalDateTime getDate(){
-        return birthdate.plus(Duration.ofSeconds(gigaseconds));
+        return birthday.plus(Duration.ofSeconds(gigaseconds));
     }
 }
