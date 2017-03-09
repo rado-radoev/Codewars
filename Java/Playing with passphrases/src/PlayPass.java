@@ -19,78 +19,60 @@
 	Complements:
 	https://www.electrical4u.com/9s-complement-and-10s-complement/
 
+	 convert stirng s to upperCase
+	 convert the string s to charArray
+	 each letter (if it is a letter) convert to int 				char character = 'a';  int ascii = (int) character;
+	 shift letter (add n) to int
+	 cannot be lower then 65(A) and higher than 90(Z)
+	 if char is and int
+	 caluclate with formula (10N - 1) where N is the number of digits - basically subtract 9 from every digit and change the sign to positive
+	 if character is not letter or digit leave it be
+	 for each odd letter number = char.toLower
+	 go through the array in reverse order and return
  */
 public class PlayPass {
-
 	public static String playPass(String s, int n) {
-		// convert stirng s to upperCase
-		// convert the string s to charArray
-		// each letter (if it is a letter) convert to int 				char character = 'a';  int ascii = (int) character;
-		// shift letter (add n) to int
-		// cannot be lower then 65(A) and higher than 90(Z)
-		// if char is and int
-		// caluclate with formula (10N - 1) where N is the number of digits - basically subtract 9 from every digit and change the sign to positive
-		// if character is not letter or digit leave it be
-		// for each odd letter number = char.toLower
-		// go through the array in reverse order and return
-		
-		
 		char[] charArray = s.toUpperCase()
 							.toCharArray();
 		
 		for (int i = 0; i < charArray.length; i++) {
-			if (Character.isLetter(charArray[i])) {
-				int currentChar = charArray[i] + n;
-				
-				while (!Character.isLetter((char) currentChar)) {
-					currentChar += 1;
+			char c = charArray[i];
+			if (Character.isLetter(c)) {			// Check if character is letter
+				if (i % 2 == 0) {					// Check if character is even position
+					if (c + n > 90) {				// If the character ASCII code is above 90 (Z) go back to 64 (A)
+						c += n - 26;
+					}
+					else {
+						c += n;						// Else add n to the character
+					}
 				}
-				
-				charArray[i] = (char)currentChar;
-				
-				if (i % 2 == 1) {
-					charArray[i] = Character.toLowerCase(charArray[i]);
+				else {								// If the character is on odd position 
+					c = Character.toLowerCase(c);	// Replace the character with a lower case character
+					if (c + n > 122) {				
+						c += n - 26;				// Again check if character would go over 122 (z) and go back to (97) a
+					}
+					else {
+						c += n;						// Else just add n to char
+					}
 				}
+				charArray[i] = c;					// Finally reassign character at the charArray position
 			}
-			else if (Character.isDigit(charArray[i])) {
-				int currentDigit = Character.getNumericValue(charArray[i]);
-				int complement = Math.abs(currentDigit - 9);
-				charArray[i] = (char)(complement + '0');
+			else if (Character.isDigit(c)) {		// Check if character is digit
+				int currentDigit = Character.getNumericValue(c);	// Convert char to int
+				int complement = Math.abs(currentDigit - 9);		// Calculate the complement (by subtracting 9 from the char) and because it is
+																	// negative value convert it to positive using Math.abs();
+				charArray[i] = (char)(complement + '0');			// Assign the calculated complement to the charArray position
 			}
 		}
 		
-		
-		char[] newCharArray = new char[charArray.length];
-		for (int i = charArray.length - 1; i >= 0; i--) {
-			newCharArray[i] = charArray[charArray.length - 1 - i];
+		char[] newCharArray = new char[charArray.length]; // Create new array to hodl the reversed string
+		for (int i = charArray.length - 1; i >= 0; i--) {	
+			newCharArray[i] = charArray[charArray.length - 1 - i];	// Assign the char at last index in charArray to 1st position of newCharArray
 		}
 		
-		String str = new String().valueOf(newCharArray);
-		return str;
+		String str = new String().valueOf(newCharArray);	// Create new string containing the char array
+		return str;											// return
 	}
-
-//        StringBuilder result = new StringBuilder();
-//        for (int i = 0; i < s.length(); i++) {
-//            char c = s.charAt(i);
-//            if (Character.isLetter(c)) {
-//                if (i % 2 == 0) {
-//                    c = String.valueOf(c).toUpperCase().charAt(0);
-//                    if (c + n > 90) c += n - 26;
-//                    else c += n;
-//                }
-//                else {
-//                    c = String.valueOf(c).toLowerCase().charAt(0);
-//                    if (c + n > 122) c += n - 26;
-//                    else c += n;
-//                }
-//                result.append(c);
-//            }
-//            else if (Character.isDigit(c)) result.append(9 - Integer.parseInt(String.valueOf(c)));
-//            else result.append(c);
-//        }
-//        return result.reverse().toString();
-//    }
-
 
 	
 	public static void main(String[] args) {
