@@ -3,6 +3,8 @@
  * Kata link: https://www.codewars.com/kata/rainfall/train/java
  */
 public class Rainfall {
+	
+	
 
     public static double mean(String town, String strng) {
         // your code
