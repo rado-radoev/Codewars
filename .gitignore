@@ -1,8 +1,6 @@
 # JDT-specific (Eclipse Java Development Tools)
 *.class
-.settings/
 /bin/
-.classpath
 Eclipse Workspace/*
 
 
