@@ -60,8 +60,16 @@ public class Rainfall {
 
 		// Regex for the city: ^[a-zA-Z]+[^:]
 		// Regex for the month: [a-zA-Z]+[^\ ]
-		// Regex for the temp:  [0-9]+.[^,]
-		// Regex for new line: 	^.+
+		// Regex for the temp:  [0-9]+.[^,]   \d+\.\d+
+		// Regex for new line: 	(^.+)
+		
+		
+		// Create hash map that has a month as a key and number as value, hash map will be named as the city name
+		// Create array list of city names (hashmaps)
+		
+		// Go through the array and search for city name
+		// when you find the city loop thorugh that hashmap
+		// do the magic on every value for every key
 		
 		System.out.println(data);
 	}
