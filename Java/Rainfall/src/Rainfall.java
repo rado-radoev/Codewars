@@ -46,7 +46,7 @@ public class Rainfall {
 		}
 		
 		for (String str : s) {
-			data = str.split("[0-9]+.[^,]");
+			data = str.split("(\\:\\w+\\s)|\\,\\w+\\s");
 			for (int i = 0; i < data.length;i++) {
 				System.out.println(data[i]);
 			}
