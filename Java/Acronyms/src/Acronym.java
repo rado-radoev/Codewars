@@ -7,17 +7,13 @@ public class Acronym {
 		String[] words = text.split("\\W+"); // split the string at all non letter chars
 
 		for (String s : words) { // for each splitted string
-			if (s.matches("^[A-Z \\d\\W]+$")) { // If the string is all upper case
+			if (s.matches("^[A-Z \\d\\W]+$") || s.matches("^[a-z \\d\\W]+$")) { // If the string is all upper case or all lowercase
 				acronym.append(s.substring(0, 1));	// Add the 1st letter to acronym 
-			}
-			else if (s.matches("^[a-z \\d\\W]+$")) { // if the next word is all lower case
-				acronym.append(s.substring(0, 1)); // add the 1st letter to acronym
 			}
 			else { // If the word is not all uppercase and not all lowercase
 				for (int letter = 0; letter < s.length();letter++) { // Check each letter
-					char currentChar = s.charAt(letter); // Assign letter at index to variable
-					if (Character.isUpperCase(currentChar)) { // If letter is uppercase
-						acronym.append(currentChar); // Add it to the acronym
+					if (Character.isUpperCase(s.charAt(letter))) { // If letter is uppercase
+						acronym.append(s.charAt(letter)); // Add it to the acronym
 					}
 				}
 			}
