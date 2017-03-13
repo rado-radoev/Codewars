@@ -1,19 +1,20 @@
 // http://exercism.io/exercises/java/raindrops/readme
 public class Raindrops {
 
-	public static int convert(int number) {
+	public static String convert(int number) {
+		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i <= 7; i += 2) {
 			if (number % i == 0) {
 				
 				switch (i) {
 				case 3:
-					System.out.println("Pling");
+					sb.append("Pling");
 					break;
 				case 5:
-					System.out.println("Plang");
+					sb.append("Plang");
 					break;
 				case 7:
-					System.out.println("Plong");
+					sb.append("Plong");
 					break;
 				default:
 					System.out.println(number);
@@ -21,6 +22,7 @@ public class Raindrops {
 				}
 			}
 		}
+		return sb.toString();
 	}
 	
 	public static void main(String[] args) {
