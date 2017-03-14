@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class HandshakeCalculator {
@@ -26,7 +27,7 @@ public class HandshakeCalculator {
 					signals.add(Signal.JUMP);
 					break;
 				case 4: 
-					System.out.println("Reverse Array");
+					Collections.reverse(signals);
 					break;
 				default:
 					break;

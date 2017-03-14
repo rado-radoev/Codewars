@@ -17,7 +17,7 @@ public final class HandshakeCalculatorTest {
                 new HandshakeCalculator().calculateHandshake(1));
     }
 
-    @Ignore
+  
     @Test
     public void testThatInput2YieldsADoubleBlink() {
         assertEquals(
@@ -25,7 +25,7 @@ public final class HandshakeCalculatorTest {
                 new HandshakeCalculator().calculateHandshake(2));
     }
 
-    @Ignore
+
     @Test
     public void testThatInput4YieldsACloseYourEyes() {
         assertEquals(
@@ -33,7 +33,7 @@ public final class HandshakeCalculatorTest {
                 new HandshakeCalculator().calculateHandshake(4));
     }
 
-    @Ignore
+
     @Test
     public void testThatInput8YieldsAJump() {
         assertEquals(
@@ -41,7 +41,7 @@ public final class HandshakeCalculatorTest {
                 new HandshakeCalculator().calculateHandshake(8));
     }
 
-    @Ignore
+
     @Test
     public void testAnInputThatYieldsTwoActions() {
         assertEquals(
@@ -49,7 +49,7 @@ public final class HandshakeCalculatorTest {
                 new HandshakeCalculator().calculateHandshake(3));
     }
 
-    @Ignore
+ 
     @Test
     public void testAnInputThatYieldsTwoReversedActions() {
         assertEquals(
@@ -57,7 +57,7 @@ public final class HandshakeCalculatorTest {
                 new HandshakeCalculator().calculateHandshake(19));
     }
 
-    @Ignore
+
     @Test
     public void testReversingASingleActionYieldsTheSameAction() {
         assertEquals(
@@ -65,7 +65,7 @@ public final class HandshakeCalculatorTest {
                 new HandshakeCalculator().calculateHandshake(24));
     }
 
-    @Ignore
+
     @Test
     public void testReversingNoActionsYieldsNoActions() {
         assertEquals(
@@ -73,7 +73,7 @@ public final class HandshakeCalculatorTest {
                 new HandshakeCalculator().calculateHandshake(16));
     }
 
-    @Ignore
+
     @Test
     public void testInputThatYieldsAllActions() {
         assertEquals(
@@ -81,7 +81,7 @@ public final class HandshakeCalculatorTest {
                 new HandshakeCalculator().calculateHandshake(15));
     }
 
-    @Ignore
+
     @Test
     public void testInputThatYieldsAllActionsReversed() {
         assertEquals(
@@ -89,7 +89,7 @@ public final class HandshakeCalculatorTest {
                 new HandshakeCalculator().calculateHandshake(31));
     }
 
-    @Ignore
+
     @Test
     public void testThatInput0YieldsNoActions() {
         assertEquals(
@@ -97,7 +97,7 @@ public final class HandshakeCalculatorTest {
                 new HandshakeCalculator().calculateHandshake(0));
     }
 
-    @Ignore
+
     @Test
     public void testThatInputWithLower5BitsNotSetYieldsNoActions() {
         assertEquals(
