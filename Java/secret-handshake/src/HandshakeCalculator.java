@@ -1,12 +1,9 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class HandshakeCalculator {
-	
-
-	public static List<Signal> calculateHandshake (int number) {
+		public static List<Signal> calculateHandshake (int number) {
 		int searchLimiter = 32 - Integer.numberOfLeadingZeros(number);
 		
 		List<Signal> signals = new ArrayList();
