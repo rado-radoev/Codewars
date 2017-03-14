@@ -1,5 +1,6 @@
 // https://www.codewars.com/kata/rainfall/train/java
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,20 +36,23 @@ public class Rainfall {
 		String[]s = data.split("\\n");
 		String[] cityname =  new String[s.length];
 		String[] month = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		String[] data;
+		String[] raindata;
+		
+		ArrayList<HashMap> cities;
 		
 		
 		int z = 0;
 		for (String str : s) {
 			int colon = str.indexOf(":");
 			cityname[z] = str.substring(0, colon);
+			System.out.println(cityname[z]);
 			z++;
 		}
 		
 		for (String str : s) {
-			data = str.split("(\\:\\w+\\s)|\\,\\w+\\s");
-			for (int i = 0; i < data.length;i++) {
-				System.out.println(data[i]);
+			raindata = str.split("(\\w+\\:\\w+\\s)|(\\,\\w+\\s)");
+			for (int i = 0; i < raindata.length;i++) {
+				//System.out.println(data[i]);
 			}
 		}
 		
