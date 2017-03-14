@@ -1,6 +1,8 @@
 import org.junit.Ignore;
 import org.junit.Test;
 
+import HandshakeCalculator.Signal;
+
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
