@@ -1,8 +1,8 @@
-import java.security.SecureRandom;
-import java.util.BitSet;
+import java.util.List;
+
 public class HandshakeCalculator {
 	
-	public enum Signal {
+	public static enum Signal {
 		WINK,
 		DOUBLE_BLINK,
 		CLOSE_YOUR_EYES,
@@ -27,6 +27,7 @@ public class HandshakeCalculator {
 		int a = 31; //0011
 		int b = 1; //0001
 		int c = 2; //0010
+		
 		
 		//System.out.println(CheckBit(a, 19));
 		//System.out.println(Integer.toBinaryString(a & (b << 1)));
