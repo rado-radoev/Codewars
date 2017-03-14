@@ -1,16 +1,39 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class HandshakeCalculator {
 	
-	public static enum Signal {
-		WINK,
-		DOUBLE_BLINK,
-		CLOSE_YOUR_EYES,
-		JUMP
-	}
 
-	public static int calculateHandshake (int number) {
-		return 0;
+	public static List<Signal> calculateHandshake (int number) {
+		int searchLimiter = 32 - Integer.numberOfLeadingZeros(number);
+		
+		List<Signal> signals = new ArrayList();
+		
+		for (int i = 0; i < searchLimiter; i++) {
+			if (CheckBit(number, i)) {
+				switch (i) {
+				case 0:
+					signals.add(Signal.WINK);
+					break;
+				case 1:
+					signals.add(Signal.DOUBLE_BLINK);
+					break;
+				case 2:
+					signals.add(Signal.CLOSE_YOUR_EYES);
+					break;
+				case 3: 
+					signals.add(Signal.JUMP);
+					break;
+				case 4: 
+					System.out.println("Reverse Array");
+					break;
+				default:
+					break;
+				}
+			}
+		}
+		return signals;
 	}
 	
 	/**
