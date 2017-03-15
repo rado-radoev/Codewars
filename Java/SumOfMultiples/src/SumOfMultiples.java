@@ -13,15 +13,6 @@ public class SumOfMultiples {
 			if (isMultiple)
 				sum += i;
 		}
-
 		return sum;
-	}
-	
-	public static void main (String[] args) {
-		int[] set = {
-	            4,
-	            6
-	        };
-		System.out.println(sum(15, set));
 	}
 }
