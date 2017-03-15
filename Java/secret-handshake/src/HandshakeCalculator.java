@@ -6,7 +6,7 @@ public class HandshakeCalculator {
 		public static List<Signal> calculateHandshake (int number) {
 		int searchLimiter = 32 - Integer.numberOfLeadingZeros(number);
 		
-		List<Signal> signals = new ArrayList();
+		List<Signal> signals = new ArrayList<Signal>();
 		
 		for (int i = 0; i < searchLimiter; i++) {
 			if (CheckBit(number, i)) {
