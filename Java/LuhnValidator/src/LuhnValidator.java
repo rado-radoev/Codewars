@@ -4,10 +4,10 @@ import java.util.regex.*;
 public class LuhnValidator {
 
 	public static boolean isValid(String code) {
-		Pattern pattern = Pattern.compile("\\d+\\s");
+		Pattern pattern = Pattern.compile("((?:(?:\\d{4}[- ]){3}\\d{4}|\\d{16}))(?![\\d])");
 		Matcher matcher = pattern.matcher(code);
 		ArrayList<Integer> singleDigits = new ArrayList<Integer>();
-		
+				
 		if (!matcher.matches()) {
 			return false;
 		}
@@ -86,16 +86,12 @@ public class LuhnValidator {
 		// number is valid - return true;
 		
 		
-		String code = "4539 14880";
-		int num = 453914880;
-		//System.out.println(num);
+		// regex life saver
 		
+		String code = "4539 1488 0343 6467";
+
 		System.out.println(isValid(code));
 
-		int[] numbers = integerToArray(num);
-		for (int i : numbers) {
-			//System.out.println(i);
-		}
 
 	}
 
