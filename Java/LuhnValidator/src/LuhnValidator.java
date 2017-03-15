@@ -14,6 +14,7 @@ public class LuhnValidator {
 		else {
 			singleDigits = convertStringToInts(code);
 			int tempInt;
+			int sum = 0;
 			for (int i = 0; i < singleDigits.size(); i++) {
 				if (i % 2 == 0) {
 					tempInt = singleDigits.get(i) << 1;
@@ -22,9 +23,9 @@ public class LuhnValidator {
 					}
 					singleDigits.set(i, tempInt);
 				}
+				sum =+ singleDigits.get(i);
 			}
-			
-			
+			System.out.println(sum);
 			return true;
 		}
 	}
@@ -88,10 +89,12 @@ public class LuhnValidator {
 		String code = "4539 14880";
 		int num = 453914880;
 		//System.out.println(num);
+		
+		System.out.println(isValid(code));
 
 		int[] numbers = integerToArray(num);
 		for (int i : numbers) {
-			System.out.println(i);
+			//System.out.println(i);
 		}
 
 	}
