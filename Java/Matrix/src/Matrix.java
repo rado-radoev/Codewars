@@ -32,15 +32,18 @@ public class Matrix {
 		 * line 2 char at 2
 		 */
 		
-		for (int i = 0; i < rows.size(); i++) {
-			// loop through row 0
-			// get the lenght of the row - 1
-			for (int j = 0; j < rows.get(i).length() - 1; j++) {
-				int index = rows.get(i).length() - rows.get(i).length() + i;
-				char col = rows.get(i).charAt(index);
-				System.out.println(col);
-				break;
+		int rowLength = rows.get(0).length();	// get the lenght of a row
+		for (int i = 0; i <= rowLength - 1;  i++) { // loop through every column
+			StringBuilder sb = new StringBuilder(); // Create empty string to hold the individual chars (digit on each row)
+			for (int j = 0; j <= rows.size() - 1; j++) { // loop through every row
+				char c = rows.get(j).charAt(i); // get the digit on the specified index 0,1,2 ...
+				sb.append(c); // Append to string
 			}
+			columns.add(sb.toString()); // Add to array
+		}
+
+		for (String s : columns) {
+			System.out.println(s);
 		}
 
 	}
