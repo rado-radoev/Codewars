@@ -3,37 +3,42 @@ import java.util.regex.*;
 
 public class LuhnValidator {
 
+	/**
+	 * Check if string containing numbers is valid credit card or Canadian SIN using Luhn algorithm
+	 * @param code the string representation of a credit card number or canadian SIN
+	 * @return boolean if the entered number is valid or not
+	 */
 	public static boolean isValid(String code) {
-		Pattern pattern = Pattern.compile("[^0-9\\s]"); // pattern that matches any
-		code = code.trim();
-		Matcher matcher = pattern.matcher(code);
-		ArrayList<Integer> singleDigits = new ArrayList<Integer>();
-		int sum = 0;
+		Pattern pattern = Pattern.compile("[^0-9\\s]"); // pattern that matches any non digit and non space char
+		code = code.trim(); // trim unnescessary spaces
+		Matcher matcher = pattern.matcher(code); // crate matcher
+		ArrayList<Integer> singleDigits = new ArrayList<Integer>(); //emtpy array to hold the digits
+		int sum = 0; // emput sum variable to hold the sum
 		
-		if (matcher.find()) {
+		if (matcher.find()) { // if any non digit and non space chars are found - exit
 			return false;
 		}
 		else {
-			singleDigits = convertStringToInts(code);
+			singleDigits = convertStringToInts(code); // convert string to list of ints
 			int tempInt;
 			
-			if (singleDigits.size() <= 1) {
+			if (singleDigits.size() <= 1) { // if we have only one digit - exit
 				return false;
 			}
 			
-			for (int i = 0; i < singleDigits.size(); i++) {
-				if ((i + 1) % 2 == 0) {
-					tempInt = singleDigits.get(i) << 1;
-					if (tempInt > 9) {
-						tempInt -= 9;
+			for (int i = 0; i < singleDigits.size(); i++) { // for every digit in the array 
+				if ((i + 1) % 2 == 0) { // for every even number
+					tempInt = singleDigits.get(i) << 1; // multiply by 2 (bitwise operation - moving the bit with one position is same as *2)
+					if (tempInt > 9) { // if the multiplied number is higher than 9
+						tempInt -= 9; // substract 9
 					}
-					singleDigits.set(i, tempInt);
+					singleDigits.set(i, tempInt); // reassign the new value at that index
 				}
-				sum += singleDigits.get(i);
+				sum += singleDigits.get(i); // add to the sum
 			}
 		}
 		if (sum % 10 == 0 || 
-				!(sum >= 22 && sum <= 55) && !(sum >= 33 && sum <= 66) && !(sum >= 44 && sum <= 77)) {
+				!(sum >= 22 && sum <= 55) && !(sum >= 33 && sum <= 66) && !(sum >= 44 && sum <= 77)) { // sum is either 0 or not in any of the ranges
 			
 			return true; // number is valid
 		}
@@ -70,6 +75,11 @@ public class LuhnValidator {
 		return tempNumber;
 	}
 	
+	/**
+	 * Converts string to List of Integers
+	 * @param str string representation of number
+	 * @return ArrayList of Integers
+	 */
 	public static ArrayList<Integer> convertStringToInts(String str) {
 		str = str.trim();	// Trim unnecessary spaces
 		char[] strToChar = str.toCharArray(); // Convert to char array
