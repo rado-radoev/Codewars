@@ -4,29 +4,41 @@ import java.util.regex.*;
 public class LuhnValidator {
 
 	public static boolean isValid(String code) {
-		Pattern pattern = Pattern.compile("((?:(?:\\d{4}[- ]){3}\\d{4}|\\d{16}))(?![\\d])");
+		Pattern pattern = Pattern.compile("[^0-9\\s]"); // pattern that matches any
+		code = code.trim();
 		Matcher matcher = pattern.matcher(code);
 		ArrayList<Integer> singleDigits = new ArrayList<Integer>();
-				
-		if (!matcher.matches()) {
+		int sum = 0;
+		
+		if (matcher.find()) {
 			return false;
 		}
 		else {
 			singleDigits = convertStringToInts(code);
 			int tempInt;
-			int sum = 0;
+			
+			if (singleDigits.size() <= 1) {
+				return false;
+			}
+			
 			for (int i = 0; i < singleDigits.size(); i++) {
-				if (i % 2 == 0) {
+				if ((i + 1) % 2 == 0) {
 					tempInt = singleDigits.get(i) << 1;
 					if (tempInt > 9) {
 						tempInt -= 9;
 					}
 					singleDigits.set(i, tempInt);
 				}
-				sum =+ singleDigits.get(i);
+				sum += singleDigits.get(i);
 			}
-			System.out.println(sum);
-			return true;
+		}
+		if (sum % 10 == 0 || 
+				!(sum >= 22 && sum <= 55) && !(sum >= 33 && sum <= 66) && !(sum >= 44 && sum <= 77)) {
+			
+			return true; // number is valid
+		}
+		else {
+			return false; // number is not valid
 		}
 	}
 	
@@ -88,9 +100,9 @@ public class LuhnValidator {
 		
 		// regex life saver
 		
-		String code = "4539 1488 0343 6467";
+		String code = "8273 1232 7352 0569";
 
-		System.out.println(isValid(code));
+		System.out.print(isValid(code));
 
 
 	}
