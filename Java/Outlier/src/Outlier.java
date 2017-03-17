@@ -1,7 +1,7 @@
 //https://www.codewars.com/trainer/java
 public class Outlier {
 	
-	public static int find(int[] integers){
+	public static int find(int[] integers) {
 		int evenNumbers = 0;
 		int oddNumbers = 0;
 		int lastEvenNumber = 0;
@@ -25,11 +25,5 @@ public class Outlier {
 		else {
 			return lastEvenNumber;
 		}
-	  }
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+  }
 }
