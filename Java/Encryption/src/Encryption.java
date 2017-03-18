@@ -10,25 +10,35 @@ public class Encryption {
 	// if n == 3 iterate throught the modified string 2 again
 	// etc.
 	
+	public static String mainEncrypt(String text) {
+	    char[] textToArray = text.toCharArray();
+	    StringBuilder sbEven = new StringBuilder();
+	    StringBuilder sbOdd = new StringBuilder();
+	    String output = null;
+	    
+	    for (int i = 0; i < textToArray.length; i++) {
+	    	if ((i + 1) % 2 == 0) {
+	    		sbEven.append(textToArray[i]);
+	    	}
+	    	else {
+	    		sbOdd.append(textToArray[i]);
+	    	}
+	    }
+	    output = String.format("%s%s", sbEven.toString(), sbOdd.toString());
+	    return output;
+	}
+	
 	  public static String encrypt(final String text, final int n) {
-		    char[] textToArray = text.toCharArray();
-		    StringBuilder sbEven = new StringBuilder();
-		    StringBuilder sbOdd = new StringBuilder();
-		    StringBuilder output = new StringBuilder();
+
+		    if (n <= 0)
+		    	return text;
 		    
-		    for (int i = 0; i < textToArray.length; i++) {
-		    	if (i % 2 == 0) {
-		    		sbEven.append(textToArray[i]);
-		    	}
-		    	else {
-		    		sbOdd.append(textToArray[i]);
-		    	}
-		    }
-		    
-		    output = String.format("%s%s", sbEven.toString() + sbOdd.toString());
-		    
-		    return null;   
-		  }
+		   String output = text;
+		   for (int i = n; i > 0; i--) {
+			  output = mainEncrypt(output);
+		   }
+		   return output;
+	  }
 		  
 		  public static String decrypt(final String encryptedText, final int n) {
 		    // Your code here
