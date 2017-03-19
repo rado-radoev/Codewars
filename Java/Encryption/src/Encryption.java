@@ -28,7 +28,7 @@ public class Encryption {
 	    return output;
 	}
 	
-	  public static String encrypt(final String text, final int n) {
+	public static String encrypt(final String text, final int n) {
 
 		    if (n <= 0)
 		    	return text;
@@ -39,9 +39,38 @@ public class Encryption {
 		   }
 		   return output;
 	  }
-		  
-		  public static String decrypt(final String encryptedText, final int n) {
-		    // Your code here
-		    return null;
-		  }
+
+	  
+	  public static String mainDecrypt(String text) {
+		    char[] textToArray = text.toCharArray();
+		    StringBuilder output = new StringBuilder();
+		    
+		    int middle = (textToArray.length - 1) / 2;
+		    for (int i = 0; i < middle; i++) {
+		    	output.append(textToArray[i]);
+		    }
+		    
+		    int insertCounter = 0;
+		    for (int i = middle; i < textToArray.length - 1; i++) {
+		    	output.insert(insertCounter, textToArray[i]);
+		    	insertCounter += 2;
+		    }
+		    return output.toString();
+	  }
+	  
+	  public static String decrypt(final String encryptedText, final int n) {
+		    if (n <= 0)
+		    	return encryptedText;
+		    
+		   String output = encryptedText;
+		   for (int i = n; i > 0; i--) {
+			  output = mainDecrypt(output);
+		   }
+		   return output;
+	  }
+	  
+	  public static void main(String[] args) {
+		  String text = "hsi  etTi sats!!";
+		  System.out.println(mainDecrypt(text));
+	  }
 }
