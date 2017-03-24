@@ -64,21 +64,25 @@ public class KillerGarage {
 	 * I need to check the next char and decide what to do based on the value
 	 * 
 	 * isDoorOpen = false
+	 * isDoorPaused = false;
 	 * isObstacle = false;
 	 * int current count = 0;
+	 * 
 	 * for (int i =0; i < charArray.lenght; i ++) 
 	 * 	if door is closed
 	 * 		if there is no obstacle
-	 * 			check character
+	 * 			check current character
 	 * 			if character is . 
-	 * 				print 0
+	 * 				do nothing - print 0
 	 * 			else if character is P
 	 * 				start opening the door (run the method that opens the door)
-	 * 				isDoorOpen = true;
+	 * 				increment the current count + 1;
+	 * 				change isDoor open to true;
 	 * 			else if character is O
 	 * 				check current int if 0 do nothing
-	 * 				else reverse counter
-	 * 		
+	 * 				else change isObstacle to true
+	 *	else if doorisOpening
+	 * 		if there is no obstacle	
 	 * 
 	 * 
 	 * 	counter = 0;
