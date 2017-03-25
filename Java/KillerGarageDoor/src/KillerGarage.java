@@ -6,15 +6,16 @@ public class KillerGarage {
 		//run("P..");
 		//run("P....");
 		//run("P.P.P...");
-		run("P.....P....O.");
+		run("P.....P........P....O....");
 		//run("P.O....");
 		//run("..P...O.....");
 	}
 	
 	
 	public static String run (String events) {
-		//System.out.println(events);
+		System.out.println(events);
 		boolean isDoorOpen = false;		// We start with closed door
+		boolean isDoorFullyOpen = false; // We want to start with door fully closed
 		boolean isDoorPaused = false;	// By default the door is not pause
 		boolean isObstacle = false;		// By default there is no obstacle
 		int currentCount = 0;			// By default the count starts from 0
@@ -26,15 +27,15 @@ public class KillerGarage {
 			char currentChar = command[i];		// Get current char in variable. Easier to read
 			if (!isDoorOpen) { 		// If the door is closed
 				if (currentChar == '.')	{		// Check if current char is .
-					//System.out.print(currentCount);		// Do nothing print 0
+					System.out.print(currentCount);		// Do nothing print 0
 					eventsOutput.append(currentCount);
 				}
 				else if (currentChar == 'P') {		// Check if character is P
 					isDoorOpen = true;			// Door is open now
-					if (currentCount + 1<= 5) {
+					if (currentCount + 1 <= 5) {
 						currentCount = currentCountIncrement(currentCount, isObstacle);		// Increment counter
 					}
-					//System.out.print(currentCount);
+					System.out.print(currentCount);
 					eventsOutput.append(currentCount);
 				}
 				else if (currentChar == 'O') {		// If current char is O
@@ -42,21 +43,21 @@ public class KillerGarage {
 					if (currentCount != 0) {		// If current count is not zero
 						currentCount = currentCountIncrement(currentCount, isObstacle); // invoke the counter method
 					}
-					//System.out.print(currentCount);
+					System.out.print(currentCount);
 					eventsOutput.append(currentCount);
 				}
 			}
 			else if (isDoorOpen) { 	// If the door is open
 				if (currentChar == '.') {		// If the character is .
 					if (isDoorPaused) {		// If the door is pause
-						//System.out.print(currentCount);		// Do nothing print 0
+						System.out.print(currentCount);		// Do nothing print 0
 						eventsOutput.append(currentCount);						
 					}
 					else {		// If the door is not paused
 						if (currentCount + 1 <= 5) {
 							currentCount = currentCountIncrement(currentCount, isObstacle);
 						}
-						//System.out.print(currentCount);
+						System.out.print(currentCount);
 						eventsOutput.append(currentCount);
 					}
 				}
@@ -66,21 +67,22 @@ public class KillerGarage {
 						if (currentCount + 1 <= 5) {
 							currentCount = currentCountIncrement(currentCount, isObstacle);
 						}
-						//System.out.print(currentCount);
+						System.out.print(currentCount);
 						eventsOutput.append(currentCount);
 					}
-					else {			// If the door is not paused
+					else if (!isDoorPaused) {			// If the door is not paused
 						isDoorPaused = true; 		// Pause the door
-						//System.out.print(currentCount);
+						System.out.print(currentCount);
 						eventsOutput.append(currentCount);
 					}
+					else if ()
 				}
 				else if (currentChar == 'O') {		// If the current char is O
 					isObstacle = true;				// Invert the counter
 					if (currentCount != 0) {		// If the current count is not zero
 						currentCount = currentCountIncrement(currentCount, isObstacle); // invoke the counter method
 					}
-					//System.out.print(currentCount);
+					System.out.print(currentCount);
 					eventsOutput.append(currentCount);
 				}
 			
@@ -90,10 +92,11 @@ public class KillerGarage {
 		return eventsOutput.toString();
 	}
 	
-	
-	public static int currentCountIncrement(int currentCount, boolean isObstacle) {
+	// if direction is true door is closing (going down)
+	// if direction is false door is opening (going up)
+	public static int currentCountIncrement(int currentCount, boolean direction) {
 		int output;
-		if (isObstacle) {		// If there is obstacle reverse the counter
+		if (direction) {		// If there is obstacle reverse the counter
 			output = currentCount - 1;
 		}
 		else {		// If there isn't obstacle add to counter

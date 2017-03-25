@@ -95,9 +95,18 @@
 	 * 						current count + 1
 	 * 					else
 	 * 						return 0
-	 * 				else // if the door is not paused , but it is open
+	 * 				else if the door is not paused , but it is open
 	 * 					isDoorPause = true;
 	 * 					print current count;
+	 *				else if the door is fully opened  (currentCount == 5)
+	 					is doorFullyOpened = true;
+	 				
+	 				if isDoorFullyOpen = true;	
+ 					start closing the door
+ 					call the counter method to close the door
+ 					
+ 					if current char is not O or .
+	 					
 	 * 			else if character is O
 	 *				check current count
 	 * 				 if current count 0 
