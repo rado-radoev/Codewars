@@ -75,14 +75,34 @@ public class KillerGarage {
 	 * 			if character is . 
 	 * 				do nothing - print 0
 	 * 			else if character is P
-	 * 				start opening the door (run the method that opens the door)
-	 * 				increment the current count + 1;
-	 * 				change isDoor open to true;
+	 * 					change isDoor open to true;
+	 * 					increment the current count + 1;
+	 * 					start opening the door (run the method that opens the door)	
 	 * 			else if character is O
-	 * 				check current int if 0 do nothing
-	 * 				else change isObstacle to true
-	 *	else if doorisOpening
+	 * 				check current count
+	 * 				 if 0 do nothing
+	 * 				else change isObstacle to true  -------- tuk moje da se dobavi neshto sigurno
+	 * 				reverse counter
+	 *	else if door open
 	 * 		if there is no obstacle	
+	 * 			if character is . 
+	 * 				if the door is paused 
+	 * 					print current count
+	 * 				else if the door is not paused
+	 * 					if (current count + 1 < 5)
+	 * 						print current count + 1
+	 * 			else if character is P
+	 * 				if the door is paused
+	 * 					if current count + 1 < 5
+	 * 						current count + 1
+	 * 					else
+	 * 						return 0
+	 * 					isDoorPaused = false;
+	 * 			else if character is O
+	 * 				check current count
+	 * 				if 0 do nothing
+	 * 				else reverse count order
+	 * 				isObstacle = true;
 	 * 
 	 * 
 	 * 	counter = 0;
