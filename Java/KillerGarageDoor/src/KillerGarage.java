@@ -2,11 +2,16 @@
 public class KillerGarage {
 
 	public static void main(String[] args) {
-
+		//run("..........");
+		//run("P..");
+		//run("P....");
+		//run("P.P..");
+		//run("P.O....");
+		run("..P...O.....");
 	}
 	
 	
-	public static void run (String events) {
+	public static String run (String events) {
 		
 		boolean isDoorOpen = false;		// We start with closed door
 		boolean isDoorPaused = false;	// By default the door is not pause
@@ -25,7 +30,7 @@ public class KillerGarage {
 				}
 				else if (currentChar == 'P') {		// Check if character is P
 					isDoorOpen = true;			// Door is open now
-					if (currentCount + 1 < 5) {
+					if (currentCount + 1 <= 5) {
 						currentCount = currentCountIncrement(currentCount, isObstacle);		// Increment counter
 					}
 					System.out.println(currentCount);
@@ -47,34 +52,59 @@ public class KillerGarage {
 						eventsOutput.append(currentCount);						
 					}
 					else {		// If the door is not paused
-						if (currentCount + 1 < 5) {
+						if (currentCount + 1 <= 5) {
 							currentCount = currentCountIncrement(currentCount, isObstacle);
 						}
 						System.out.println(currentCount);
 						eventsOutput.append(currentCount);
 					}
-
+				}
+				else if (currentChar == 'P') {		// If the current char is P
+					if (isDoorPaused) {		// If the door is paused
+						isDoorPaused = false;		// Door is not paused anymore. Start moving
+						if (currentCount + 1 <= 5) {
+							currentCount = currentCountIncrement(currentCount, isObstacle);
+						}
+						System.out.println(currentCount);
+						eventsOutput.append(currentCount);
+					}
+					else {			// If the door is not paused
+						isDoorPaused = true; 		// Pause the door
+						System.out.println(currentCount);
+						eventsOutput.append(currentCount);
+					}
+				}
+				else if (currentChar == 'O') {		// If the current char is O
+					isObstacle = true;				// Invert the counter
+					if (currentCount != 0) {		// If the current count is not zero
+						currentCount = currentCountIncrement(currentCount, isObstacle); // invoke the counter method
+					}
+					System.out.println(currentCount);
+					eventsOutput.append(currentCount);
 				}
 			
-			}
-			
-			
-			
-			
+			}	
 		}
 		
-
-		
+		return eventsOutput.toString();
 	}
 	
 	
 	public static int currentCountIncrement(int currentCount, boolean isObstacle) {
+		int minCounter = 0;
+		int maxCounter = 5;
+		int output = 0;
 		if (isObstacle) {		// If there is obstacle reverse the counter
-			return currentCount - 1;
+			output = currentCount - 1;
 		}
 		else {		// If there isn't obstacle add to counter
-			return currentCount + 1;
+			output = currentCount + 1;
 		}
+		
+		if (output > maxCounter || output < minCounter) {
+			output = 0;
+		}
+		return output;
 	}
 
 }
