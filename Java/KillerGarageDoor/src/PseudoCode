@@ -80,6 +80,13 @@
 	 * 					invoke current count method with obstacle == true;
 	 * 					print count with obstacle == true -- count - 1;
 	 *	else if door open
+	 			if the currentCounter is equal to 5
+	 				the door is fully open
+	 				isDoorFullyOpne = true;
+	 			else if the currentCounter is equal to 0
+	 				the door is fully closed
+	 				isDoorFullyOpen = false;
+	 				
 	 * 			if character is . 
 	 * 				if the door is paused 
 	 * 					print current count
@@ -98,13 +105,15 @@
 	 * 				else if the door is not paused , but it is open
 	 * 					isDoorPause = true;
 	 * 					print current count;
-	 *				else if the door is fully opened  (currentCount == 5)
-	 					is doorFullyOpened = true;
-	 				
+	 *				else if the door is fully opened  (isDoorFullyOpen = true)
+	 					start closing the door
+	 					currentCounter in reverse (currentCountInvert method (currenCounter, false))
+	 				else if the door is fully closed (isDoorFullyOpen = false)
+	 					start open the door
+	 					isDoorOpen = true;
+	 					currentCounter = currentCounterInvoker(currentCounter, true)
 	 				if isDoorFullyOpen = true;	
- 					start closing the door
- 					call the counter method to close the door
- 					
+					
  					if current char is not O or .
 	 					
 	 * 			else if character is O

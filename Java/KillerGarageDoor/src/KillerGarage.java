@@ -48,19 +48,31 @@ public class KillerGarage {
 				}
 			}
 			else if (isDoorOpen) { 	// If the door is open
+				
+				if (currentCount == 5 ) {	// If the door is fully opened
+					isDoorFullyOpen = true;		// The door is fully opened
+				}
+				else if (currentCount == 0) { 	// If the door is fully closed
+					isDoorFullyOpen = false;
+				}
+				
 				if (currentChar == '.') {		// If the character is .
-					if (isDoorPaused) {		// If the door is pause
+					if (isDoorPaused) {		// If the door is paused
 						System.out.print(currentCount);		// Do nothing print 0
 						eventsOutput.append(currentCount);						
 					}
-					else {		// If the door is not paused
-						if (currentCount + 1 <= 5) {
+					else if (!isDoorPaused) {		// If the door is not paused
+						if (isDoorFullyOpen) {		// And the door is fully opened
+							currentCount = currentCountIncrement(currentCount, true);	// Start closing the door
+						}
+						else {
 							currentCount = currentCountIncrement(currentCount, isObstacle);
 						}
 						System.out.print(currentCount);
 						eventsOutput.append(currentCount);
 					}
 				}
+				
 				else if (currentChar == 'P') {		// If the current char is P
 					if (isDoorPaused) {		// If the door is paused
 						isDoorPaused = false;		// Door is not paused anymore. Start moving
@@ -71,12 +83,19 @@ public class KillerGarage {
 						eventsOutput.append(currentCount);
 					}
 					else if (!isDoorPaused) {			// If the door is not paused
-						isDoorPaused = true; 		// Pause the door
-						System.out.print(currentCount);
-						eventsOutput.append(currentCount);
+						if (isDoorFullyOpen) {		// If the door is fully opened
+							currentCount = currentCountIncrement(currentCount, true);	// Start closing the door
+							System.out.print(currentCount);
+							eventsOutput.append(currentCount);							
+						}
+						else {	// Pause the door
+							isDoorPaused = true; 		
+							System.out.print(currentCount);
+							eventsOutput.append(currentCount);			
+						}
 					}
-					else if ()
 				}
+				
 				else if (currentChar == 'O') {		// If the current char is O
 					isObstacle = true;				// Invert the counter
 					if (currentCount != 0) {		// If the current count is not zero
@@ -96,17 +115,11 @@ public class KillerGarage {
 	// if direction is false door is opening (going up)
 	public static int currentCountIncrement(int currentCount, boolean direction) {
 		int output;
-		if (direction) {		// If there is obstacle reverse the counter
+		if (direction) {		// If direction is true the door is closing (going down)
 			output = currentCount - 1;
 		}
-		else {		// If there isn't obstacle add to counter
+		else {		// If the direction is false the door is opening (going up)
 			output = currentCount + 1;
-		}
-		if (output < 0) {
-			return 0;
-		}
-		else if (output > 5) {
-			return 5;
 		}
 		return output;
 	}
