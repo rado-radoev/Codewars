@@ -5,14 +5,15 @@ public class KillerGarage {
 		//run("..........");
 		//run("P..");
 		//run("P....");
-		//run("P.P..");
+		//run("P.P.P...");
+		run("P.....P....O.");
 		//run("P.O....");
-		run("..P...O.....");
+		//run("..P...O.....");
 	}
 	
 	
 	public static String run (String events) {
-		
+		//System.out.println(events);
 		boolean isDoorOpen = false;		// We start with closed door
 		boolean isDoorPaused = false;	// By default the door is not pause
 		boolean isObstacle = false;		// By default there is no obstacle
@@ -25,15 +26,15 @@ public class KillerGarage {
 			char currentChar = command[i];		// Get current char in variable. Easier to read
 			if (!isDoorOpen) { 		// If the door is closed
 				if (currentChar == '.')	{		// Check if current char is .
-					System.out.println(currentCount);		// Do nothing print 0
+					//System.out.print(currentCount);		// Do nothing print 0
 					eventsOutput.append(currentCount);
 				}
 				else if (currentChar == 'P') {		// Check if character is P
 					isDoorOpen = true;			// Door is open now
-					if (currentCount + 1 <= 5) {
+					if (currentCount + 1<= 5) {
 						currentCount = currentCountIncrement(currentCount, isObstacle);		// Increment counter
 					}
-					System.out.println(currentCount);
+					//System.out.print(currentCount);
 					eventsOutput.append(currentCount);
 				}
 				else if (currentChar == 'O') {		// If current char is O
@@ -41,21 +42,21 @@ public class KillerGarage {
 					if (currentCount != 0) {		// If current count is not zero
 						currentCount = currentCountIncrement(currentCount, isObstacle); // invoke the counter method
 					}
-					System.out.println(currentCount);
+					//System.out.print(currentCount);
 					eventsOutput.append(currentCount);
 				}
 			}
 			else if (isDoorOpen) { 	// If the door is open
 				if (currentChar == '.') {		// If the character is .
 					if (isDoorPaused) {		// If the door is pause
-						System.out.println(currentCount);		// Do nothing print 0
+						//System.out.print(currentCount);		// Do nothing print 0
 						eventsOutput.append(currentCount);						
 					}
 					else {		// If the door is not paused
 						if (currentCount + 1 <= 5) {
 							currentCount = currentCountIncrement(currentCount, isObstacle);
 						}
-						System.out.println(currentCount);
+						//System.out.print(currentCount);
 						eventsOutput.append(currentCount);
 					}
 				}
@@ -65,12 +66,12 @@ public class KillerGarage {
 						if (currentCount + 1 <= 5) {
 							currentCount = currentCountIncrement(currentCount, isObstacle);
 						}
-						System.out.println(currentCount);
+						//System.out.print(currentCount);
 						eventsOutput.append(currentCount);
 					}
 					else {			// If the door is not paused
 						isDoorPaused = true; 		// Pause the door
-						System.out.println(currentCount);
+						//System.out.print(currentCount);
 						eventsOutput.append(currentCount);
 					}
 				}
@@ -79,7 +80,7 @@ public class KillerGarage {
 					if (currentCount != 0) {		// If the current count is not zero
 						currentCount = currentCountIncrement(currentCount, isObstacle); // invoke the counter method
 					}
-					System.out.println(currentCount);
+					//System.out.print(currentCount);
 					eventsOutput.append(currentCount);
 				}
 			
@@ -91,18 +92,18 @@ public class KillerGarage {
 	
 	
 	public static int currentCountIncrement(int currentCount, boolean isObstacle) {
-		int minCounter = 0;
-		int maxCounter = 5;
-		int output = 0;
+		int output;
 		if (isObstacle) {		// If there is obstacle reverse the counter
 			output = currentCount - 1;
 		}
 		else {		// If there isn't obstacle add to counter
 			output = currentCount + 1;
 		}
-		
-		if (output > maxCounter || output < minCounter) {
-			output = 0;
+		if (output < 0) {
+			return 0;
+		}
+		else if (output > 5) {
+			return 5;
 		}
 		return output;
 	}
