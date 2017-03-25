@@ -70,64 +70,61 @@ public class KillerGarage {
 	 * 
 	 * for (int i =0; i < charArray.lenght; i ++) 
 	 * 	if door is closed
-	 * 		if there is no obstacle
 	 * 			check current character
 	 * 			if character is . 
 	 * 				do nothing - print 0
 	 * 			else if character is P
 	 * 					change isDoor open to true;
-	 * 					increment the current count + 1;
-	 * 					start opening the door (run the method that opens the door)	
+	 * 					if current count + 1 < 5
+	 * 						increment the current count - invoke method
+	 * 					else
+	 * 						print 0
 	 * 			else if character is O
 	 * 				check current count
-	 * 				 if 0 do nothing
-	 * 				else change isObstacle to true  -------- tuk moje da se dobavi neshto sigurno
-	 * 				reverse counter
+	 * 				 if current count 0 
+	 * 					do nothing
+	 * 					print 0
+	 * 				else 
+	 * 					invoke current count method with obstacle == true;
+	 * 					print count with obstacle == true -- count - 1;
 	 *	else if door open
-	 * 		if there is no obstacle	
 	 * 			if character is . 
 	 * 				if the door is paused 
 	 * 					print current count
 	 * 				else if the door is not paused
 	 * 					if (current count + 1 < 5)
 	 * 						print current count + 1
+	 * 					else
+	 * 						print 0
 	 * 			else if character is P
 	 * 				if the door is paused
+	 * 					isDoorPaused = false;
 	 * 					if current count + 1 < 5
 	 * 						current count + 1
 	 * 					else
 	 * 						return 0
-	 * 					isDoorPaused = false;
+	 * 				else // if the door is not paused , but it is open
+	 * 					isDoorPause = true;
+	 * 					print current count;
 	 * 			else if character is O
-	 * 				check current count
-	 * 				if 0 do nothing
-	 * 				else reverse count order
-	 * 				isObstacle = true;
+	 *				check current count
+	 * 				 if current count 0 
+	 * 					do nothing
+	 * 					print 0
+	 * 				else 
+	 * 					invoke current count method with obstacle == true;
+	 * 					print count with obstacle == true -- count - 1;
 	 * 
 	 * 
-	 * 	counter = 0;
-	 *  doorMoveCounter = 0; - this number should be changed by the method from 0 to 4 or 4 to 0 depending on the door direction
-	 * 	while counter < charArray.lenght
-	 * 		if isObstacle == false
-	 * 			call the method to move the door
-	 * 			check next char 
-	 * 			if next char is O
-	 * 				isObstacle == true;
-	 * 		else // isObstacle == true - reversing the door opeing
-	 * 			call the method to move the door in reverse
-	 * 			check next char
-	 * 			if next char is P - the door is Pause
-	 * 		    keep printing the same number
-	 * 
-	 * 
-	 * 
-	 * 
-	 * If I start opening/closing the door I have to check the next char
-	 * if the next char is not P or O continue counting
-	 * else if next char is P pause counting until P is pressed or end of char
-	 * else if next char is O reverse counting
-	 * 
-	 * 
+	 *   public int currentCountIncrement(int count, boolean obstacle) {
+	 *   	if (obstacle) {
+	 *   		return count - 1;
+	 *   	}
+	 *   	else {
+	 *   		return count + 1;
+	 *   	}
+	 *   
+	 *   } 
 	 * 
 	 * 
 	 */
