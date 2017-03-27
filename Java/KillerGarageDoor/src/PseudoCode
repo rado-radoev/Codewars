@@ -8,78 +8,132 @@
 	// if less than 1 -> zeros
 	// if higher than 5 -> zeroes
 	
-	/*
-	 * char[] arr = string.toCharArray();
-	 * iterate through the array
-	 * set a counter that is equal to the array length
-	 * char previous = char[i - 1];
-	 * char next = char[i + 1]
-	 * char current = char[i]
-	 * StringBuilder output = new StringBuilder()
-	 * 
-	 * if string start with . do nothing -> print 0
-	 * if next string is . do nothing -> print 0
-	 * if next string is . do nothing -> print 0
-	 * if next string is P print 1
-	 * if next string is . print 2
-	 * if next string is . print 3
-	 * if next string is . print 4
-	 * if next string is . print 5
-	 * if next string is . print 0
-	 * if next string is . print 0
-	 * if next string is P print 4
-	 * if next string is . print 3
-	 * if next string is . print 2
-	 * if next string is P print 2
-	 * if next string is . print 2
-	 * if next string is . print 2
-	 * if next string is P print 1
-	 * if next string is . print 0
-	 * if next string is . print 0
-	 * if next string is P print 1
-	 * if next string is . print 2
-	 * if next string is . print 3
-	 * if next string is O print 2
-	 * if next string is . print 1
-	 * if next string is . print 0
-	 * 
-	 * if door is closed P starts opening the door -> prints 1 to 5
-	 * if door is opened P starts closing the door -> prints 5 to 1
-	 * when door detects obstacle O it reverses the direction.
-	 * . does nothing
-	 * 
-	 * 
-	 * by default door is close
-	 * I need a variable that monitors the door direction -> Open or close
-	 * I need a variable for obstacle. by defautl it will be false. boolean isObstacle = false;
-	 * I need a method that does the countdown or count up depending on the door position
-	 * I need to check the next char and decide what to do based on the value
-	 * 
-	 * isDoorOpen = false
-	 * isDoorPaused = false;
-	 * isObstacle = false;
-	 * int current count = 0;
-	 * 
-	 * for (int i =0; i < charArray.lenght; i ++) 
-	 * 	if door is closed
-	 * 			check current character
-	 * 			if character is . 
-	 * 				do nothing - print 0
-	 * 			else if character is P
-	 * 					change isDoor open to true;
-	 * 					if current count + 1 < 5
-	 * 						increment the current count - invoke method
-	 * 					else
-	 * 						print 0
-	 * 			else if character is O
-	 * 				check current count
-	 * 				 if current count 0 
-	 * 					do nothing
-	 * 					print 0
-	 * 				else 
-	 * 					invoke current count method with obstacle == true;
-	 * 					print count with obstacle == true -- count - 1;
-	 *	else if door open
+	/
+	  char[] arr = string.toCharArray();
+	  iterate through the array
+	  set a counter that is equal to the array length
+	  char previous = char[i - 1];
+	  char next = char[i + 1]
+	  char current = char[i]
+	  StringBuilder output = new StringBuilder()
+	  
+	  if string start with . do nothing -> print 0
+	  if next string is . do nothing -> print 0
+	  if next string is . do nothing -> print 0
+	  if next string is P print 1
+	  if next string is . print 2
+	  if next string is . print 3
+	  if next string is . print 4
+	  if next string is . print 5
+	  if next string is . print 0
+	  if next string is . print 0
+	  if next string is P print 4
+	  if next string is . print 3
+	  if next string is . print 2
+	  if next string is P print 2
+	  if next string is . print 2
+	  if next string is . print 2
+	  if next string is P print 1
+	  if next string is . print 0
+	  if next string is . print 0
+	  if next string is P print 1
+	  if next string is . print 2
+	  if next string is . print 3
+	  if next string is O print 2
+	  if next string is . print 1
+	  if next string is . print 0
+	  
+	  if door is closed P starts opening the door -> prints 1 to 5
+	  if door is opened P starts closing the door -> prints 5 to 1
+	  when door detects obstacle O it reverses the direction.
+	  . does nothing
+	  
+	  
+	  by default door is close
+	  I need a variable that monitors the door direction -> Open or close
+	  I need a variable for obstacle. by defautl it will be false. boolean isObstacle = false;
+	  I need a method that does the countdown or count up depending on the door position
+	  I need to check the next char and decide what to do based on the value
+	  
+	  isDoorOpen = false // if door is open false == no true == yes
+	  isDoorPaused = false; // if door is paused false == not  true == yes
+	  isDoorFullyOpen = false; // if door is fully open currentCount == 5 or door is closed currentCount == 0
+	  isObstacle = false; // if there is an obstacle detected false == not true == yes
+	  bool doorDirection = false // door direction false == closing true == opening
+	  int current count = 0;
+	 
+	 
+	 for (int i = 0; i < charArray.lenght; i++) {
+	 	if the door is closed (isDoorOpen == false)
+	 		if currentChar is .
+	 			print currentCount 
+	 		else if currentChar is P
+	 			change door direction (DoorDirection = true)
+	 			change the door is open (isDoorOpen = true)
+	 			increment the current count 
+	 			currentCount = currentCountInvoker(currentCount, doorDirection, Obstacle)
+	 		else if currentChar is O
+	 			check current Count
+	 			if currentCount anything but 0
+	 				invoke currentCount method with obstacle == true
+	 				isObstacle == true;
+	 				currentCount = currentCountInvoker(currentCount, doorDirection, obstacle)
+	 	
+	 	if the door is open (isDoorOpen == true)
+	 		if currentChar is .
+ 				currentCount = currentCountInvoke(currentCount, doorDirection, obstacle)
+ 			else if currentChar is P
+ 				if currentCount is 5
+ 					start closing the door
+ 					doorDirection = false
+ 					currentCount = currentCountInvoke(currentCount, doorDirection, obstacle)
+ 				
+ 				if the door is paused (isDoorPaused)
+ 					unpause the door
+ 					isDoorPaused == false
+ 					currentCount = currentCountInvoke(currentCount, doorDirection, obstacle)
+ 				else 
+ 					pause the door
+ 					isDoorPaused == true
+ 					currentCount = currentCount
+ 					
+ 			else if currentChar is O
+		 			if currentCount anything but 0
+	 				invoke currentCount method with obstacle == true
+	 				isObstacle == true;
+	 				currentCount = currentCountInvoker(currentCount, doorDirection, obstacle)
+ 				
+ 			
+	 		
+	 			
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	  
+	  for (int i =0; i < charArray.lenght; i ++) 
+	  	if door is closed
+	  			check current character
+	  			if character is . 
+	  				do nothing - print 0
+	  			else if character is P
+	  					change isDoor open to true;
+	  					if current count + 1 < 5
+	  						increment the current count - invoke method
+	  					else
+	  						print 0
+	  			else if character is O
+	  				check current count
+	  				 if current count 0 
+	  					do nothing
+	  					print 0
+	  				else 
+	  					invoke current count method with obstacle == true;
+	  					print count with obstacle == true -- count - 1;
+	 	else if door open
 	 			if the currentCounter is equal to 5
 	 				the door is fully open
 	 				isDoorFullyOpne = true;
@@ -87,25 +141,25 @@
 	 				the door is fully closed
 	 				isDoorFullyOpen = false;
 	 				
-	 * 			if character is . 
-	 * 				if the door is paused 
-	 * 					print current count
-	 * 				else if the door is not paused
-	 * 					if (current count + 1 < 5)
-	 * 						print current count + 1
-	 * 					else
-	 * 						print 0
-	 * 			else if character is P
-	 * 				if the door is paused
-	 * 					isDoorPaused = false;
-	 * 					if current count + 1 < 5
-	 * 						current count + 1
-	 * 					else
-	 * 						return 0
-	 * 				else if the door is not paused , but it is open
-	 * 					isDoorPause = true;
-	 * 					print current count;
-	 *				else if the door is fully opened  (isDoorFullyOpen = true)
+	  			if character is . 
+	  				if the door is paused 
+	  					print current count
+	  				else if the door is not paused
+	  					if (current count + 1 < 5)
+	  						print current count + 1
+	  					else
+	  						print 0
+	  			else if character is P
+	  				if the door is paused
+	  					isDoorPaused = false;
+	  					if current count + 1 < 5
+	  						current count + 1
+	  					else
+	  						return 0
+	  				else if the door is not paused , but it is open
+	  					isDoorPause = true;
+	  					print current count;
+	 				else if the door is fully opened  (isDoorFullyOpen = true)
 	 					start closing the door
 	 					currentCounter in reverse (currentCountInvert method (currenCounter, false))
 	 				else if the door is fully closed (isDoorFullyOpen = false)
@@ -116,25 +170,36 @@
 					
  					if current char is not O or .
 	 					
-	 * 			else if character is O
-	 *				check current count
-	 * 				 if current count 0 
-	 * 					do nothing
-	 * 					print 0
-	 * 				else 
-	 * 					invoke current count method with obstacle == true;
-	 * 					print count with obstacle == true -- count - 1;
-	 * 
-	 * 
-	 *   public int currentCountIncrement(int count, boolean obstacle) {
-	 *   	if (obstacle) {
-	 *   		return count - 1;
-	 *   	}
-	 *   	else {
-	 *   		return count + 1;
-	 *   	}
-	 *   
-	 *   } 
-	 * 
-	 * 
-	 */
+	  			else if character is O
+	 				check current count
+	  				 if current count 0 
+	  					do nothing
+	  					print 0
+	  				else 
+	  					invoke current count method with obstacle == true;
+	  					print count with obstacle == true -- count - 1;
+	  
+	  
+	    public int currentCountIncrement(int count, boolean direction, boolean obstacle) {
+	   int output;  	
+	 	if (direction) { // if true door is opening 
+	 		if (obstacle) // if there is an obstacle
+	    		output = count - 1;
+	    	}
+	 		else {
+	 			output = count + 1;
+	 		}
+	    	else {	// if false door is closing
+	    		if (output) // if there is an obstacle
+	 				output = count + 1
+	 			else
+	 				output = count - 1
+	    	}
+	 
+	 		return output
+	 
+
+	    } 
+	  
+	  
+	 /
