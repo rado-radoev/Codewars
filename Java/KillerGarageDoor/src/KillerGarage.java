@@ -13,8 +13,7 @@ public class KillerGarage {
 	
 	
 	public static String run (String events) {
-		System.out.println(events);
-		boolean isDoorOpen = false;		// We start with closed door
+//		System.out.println(events);
 		boolean isDoorPaused = false;	// By default the door is not pause
 		boolean isObstacle = false;		// By default there is no obstacle
 		boolean doorDirection = false;	// Door direction - false = closing, true = opening
@@ -25,70 +24,51 @@ public class KillerGarage {
 		
 		for (int i = 0; i < command.length; i++) {
 			char currentChar = command[i];
-			if (!isDoorOpen) {  // if the door is closed
-				if (currentChar == '.') {	// keep the current count, don't change it
+			if (currentChar == '.') {
+				if (currentCount == 5 || isDoorPaused) { // if the door is fully open or paused do nothing
 //					System.out.print(currentCount);
 					eventsOutput.append(currentCount);
 				}
-				else if (currentChar == 'P') {
-					doorDirection = true;	// Change the door direction
-					isDoorOpen = true;		// Mark the door as open
+				else { // else increment the counter
 					currentCount = currentCountIncrement(currentCount, doorDirection, isObstacle);
 //					System.out.print(currentCount);
 					eventsOutput.append(currentCount);
 				}
 			}
-			
-			else if (isDoorOpen)	{  // if the door is open
-				if (currentChar == '.') {
-					if (currentCount == 5 || isDoorPaused) { // if the door is fully open or paused do nothing
-//						System.out.print(currentCount);
-						eventsOutput.append(currentCount);
-					}
-					else { // else increment the counter
-						currentCount = currentCountIncrement(currentCount, doorDirection, isObstacle);
-//						System.out.print(currentCount);
-						eventsOutput.append(currentCount);
-					}
-				}
-				else if (currentChar == 'P') {
-					if (currentCount == 5) {	// Start closing the door
-						doorDirection = false;	// door must be going down
-						currentCount = currentCountIncrement(currentCount, doorDirection, isObstacle);
-//						System.out.print(currentCount);
-						eventsOutput.append(currentCount);
-					}
-					else if (currentCount == 0) {	// if door is fully closed
-						doorDirection = true;		// Start opening the door
-						currentCount = currentCountIncrement(currentCount, doorDirection, isObstacle);
-//						System.out.print(currentCount);
-						eventsOutput.append(currentCount);
-					}
-					else if (isDoorPaused) {	// If the door is paused
-						isDoorPaused = false; // Unpause the door
-						currentCount =  currentCountIncrement(currentCount, doorDirection, isObstacle);
-//						System.out.print(currentCount);
-						eventsOutput.append(currentCount);
-					}
-					else {		// If the door is not paused
-						isDoorPaused = true; 	// Pause the door
-//						System.out.print(currentCount);
-						eventsOutput.append(currentCount); 	// do nothing 
-					}
-				}
-				
-				if (currentChar == 'O') {
-					if (currentCount != 0 && currentCount != 5 && !isDoorPaused) { 	// if the door is moving
-						isObstacle = true;		// Obstacle detected
-						currentCount = currentCountIncrement(currentCount, doorDirection, isObstacle);
-					}
+			else if (currentChar == 'P') {
+				if (currentCount == 5) {	// Start closing the door
+					doorDirection = false;	// door must be going down
+					currentCount = currentCountIncrement(currentCount, doorDirection, isObstacle);
 //					System.out.print(currentCount);
 					eventsOutput.append(currentCount);
-
+				}
+				else if (currentCount == 0) {	// if door is fully closed
+					doorDirection = true;		// Start opening the door
+					currentCount = currentCountIncrement(currentCount, doorDirection, isObstacle);
+//					System.out.print(currentCount);
+					eventsOutput.append(currentCount);
+				}
+				else if (isDoorPaused) {	// If the door is paused
+					isDoorPaused = false; // Unpause the door
+					currentCount =  currentCountIncrement(currentCount, doorDirection, isObstacle);
+//					System.out.print(currentCount);
+					eventsOutput.append(currentCount);
+				}
+				else {		// If the door is not paused
+					isDoorPaused = true; 	// Pause the door
+//					System.out.print(currentCount);
+					eventsOutput.append(currentCount); 	// do nothing 
 				}
 			}
+			else if (currentChar == 'O') {
+				if (currentCount != 0 && currentCount != 5 && !isDoorPaused) { 	// if the door is moving
+					isObstacle = true;		// Obstacle detected
+					currentCount = currentCountIncrement(currentCount, doorDirection, isObstacle);
+				}
+//				System.out.print(currentCount);
+				eventsOutput.append(currentCount);
+			}
 		}
-		
 		return eventsOutput.toString();
 	}
 	
