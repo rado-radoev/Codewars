@@ -82,7 +82,7 @@ public class KillerGarage {
 						isObstacle = true;		// Obstacle detected
 						currentCount = currentCountIncrement(currentCount, doorDirection, isObstacle);
 					}
-					System.out.print(currentCount);
+//					System.out.print(currentCount);
 					eventsOutput.append(currentCount);
 
 				}
