@@ -2,7 +2,13 @@
 import java.util.HashMap;
 
 
+
 public class DuplicateEncoder {
+	
+	public static void main(String[] args) {
+		int[] numbers = {0,1,2,3,4,5,6,7,8,9};
+		System.out.println(numbers[0-3]);
+	}
 
 	public static String encode (String word) {
 		HashMap<Character, Integer> charMap = new HashMap<Character, Integer>(word.length() + 100, word.length() * .25F);
