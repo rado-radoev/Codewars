@@ -35,9 +35,9 @@ public class Matrix {
 	
 	public static ArrayList<String> calculateColumn(String matrixAsString) {
 		int rowLength = rows.get(0).length();	// get the length of a row
-		for (int i = 0; i <= rowLength - 1;  i++) { // loop through every column
+		for (int i = 0; i < rowLength;  i++) { // loop through every column
 			StringBuilder sb = new StringBuilder(); // Create empty string to hold the individual chars (digit on each row)
-			for (int j = 0; j <= rows.size() - 1; j++) { // loop through every row
+			for (int j = 0; j < rows.size(); j++) { // loop through every row
 				char c = rows.get(j).charAt(i); // get the digit on the specified index 0,1,2 ...
 				sb.append(c); // Append to string
 			}
