@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
+
 public class StringSplitter {
 
 	public static void main(String[] args) {
