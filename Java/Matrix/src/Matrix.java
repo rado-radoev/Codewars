@@ -18,8 +18,10 @@ public class Matrix {
 	}
 	
 	int[] getColumn(int column) {
+		int test = getColumnsCount();
 		int[] col = new int[getColumnsCount()];
 		for (int i = 0; i < getColumnsCount(); i++) {
+			test = getColumnsCount();
 			col[i] = matrix[i][column];
 		}
 		return col;
@@ -39,5 +41,10 @@ public class Matrix {
 			}
 		}
 		return matrix;
+	}
+	
+	public static void main(String[] args) {
+		Matrix m = new Matrix("0 1 2\n3 4 5\n6 7 8");
+		m.getColumn(0);
 	}
 }
