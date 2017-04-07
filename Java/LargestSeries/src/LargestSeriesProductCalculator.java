@@ -2,25 +2,52 @@
 public class LargestSeriesProductCalculator {
 
 	private String str;
-	private int[] numArray;
+	private long[] numArray;
 	
-	public LargestSeriesProductCalculator(String str) {
-		this.str = str;
+	public LargestSeriesProductCalculator(String str) throws IllegalArgumentException {
+		setStr(str);
 		this.numArray = convertStrToIntArray(str);
 	}
 	
-	private int[] convertStrToIntArray(String str) {
-		int[] numArray = new int[str.length()];
+	
+	
+	public void setStr(String str) {
+		if (str.length() == 0) {
+			throw new IllegalArgumentException("Series length must be less than or equal to the length of the string to search.");
+		}
+		else if (str.isEmpty()) {
+			throw new IllegalArgumentException("String to search must be non-null.");
+		}
+		
+		this.str = str;
+	}
+	
+	
+	private long[] convertStrToIntArray(String str) {
+		long[] numArray = new long[str.length()];
 		for (int i = 0; i < str.length(); i++) {
 			numArray[i] = str.charAt(i) - 48;
 		}
 		return numArray;
 	}
 	
-	public int calculateLargestProductForSeriesLength(int n) {
-		int maxSum = Integer.MIN_VALUE;
+	public long calculateLargestProductForSeriesLength(long n) throws IllegalArgumentException {
+		
+		if (n == 0) {
+			
+		}
+		
+		if (n > str.length()) {
+			throw new IllegalArgumentException("Series length must be less than or equal to the length of the string to search.");
+		}
+		else if (n < 0) {
+			throw new IllegalArgumentException("Series length must be non-negative.");
+		}
+		
+		
+		long maxSum = Integer.MIN_VALUE;
 		for (int i = 0; i < numArray.length;i++) {
-			int sum = 1;
+			long sum = 1;
 			if (i > numArray.length - n) {
 				break;
 			}
