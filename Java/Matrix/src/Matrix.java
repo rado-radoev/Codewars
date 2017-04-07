@@ -1,112 +1,43 @@
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Matrix {
+	private int[][] matrix;
 	
-	private static ArrayList<String> rows = new ArrayList<String>();
-	private static ArrayList<String> columns = new ArrayList<String>();
-	
-	public Matrix(String matrixAsString) {
-		calculateColumn(matrixAsString);
-		calculateRow(matrixAsString);
+	public Matrix(String s) {
+		calcMatrix(s);
 	}
 
-
-	public static int getRowsCount() {
-		return rows.size();
+	int getRowsCount() {
+		return matrix.length;
 	}
 	
-	
-	public static int getColumnsCount() {
-		return columns.size();
+	int getColumnsCount() {
+		return matrix[0].length;
 	}
 	
-	public static int getRow(int row) {
-		int rowToInt = Integer.parseInt(rows.get(row));
-		return rowToInt;
+	int[] getRow(int row) {
+		return matrix[row];
 	}
 	
-	public static int getColumn(int column) {
-		int columnToInt = Integer.parseInt(columns.get(column));
-		return columnToInt;
-		
-	}
-	
-	public static ArrayList<String> calculateColumn(String matrixAsString) {
-		int rowLength = rows.get(0).length();	// get the length of a row
-		for (int i = 0; i < rowLength;  i++) { // loop through every column
-			StringBuilder sb = new StringBuilder(); // Create empty string to hold the individual chars (digit on each row)
-			for (int j = 0; j < rows.size(); j++) { // loop through every row
-				char c = rows.get(j).charAt(i); // get the digit on the specified index 0,1,2 ...
-				sb.append(c); // Append to string
-			}
-			columns.add(sb.toString()); // Add to array
+	int[] getColumn(int column) {
+		int[] col = new int[getColumnsCount()];
+		for (int i = 0; i < getColumnsCount(); i++) {
+			col[i] = matrix[i][column];
 		}
-		return columns;
+		return col;
 	}
 	
-	
-	public static ArrayList<String> calculateRow(String matrixAsString) {
-		Pattern p = Pattern.compile(".*.");
-		Matcher m = p.matcher(matrixAsString);
+	public int[][] calcMatrix(String s) {
+		String[] rows = s.split("\\r?\\n"); // splitting the string into lines
+		matrix = new int[rows.length][]; // creating first dimension of the array to be equal to the number of lines - rows
 		
-		while (m.find()) {
-			String trimmed = m.group().replaceAll("\\s", "");
-			rows.add(trimmed);
-		}	
-		return rows;
+		for (int i = 0; i < rows.length; i++) {  // Iterating through every row
+			rows[i] = rows[i].trim();	// Trimming empty spaces 
+			String[] columns = rows[i].split(" "); // New array that will hold the digits
+			matrix[i] = new int[columns.length];	// create second dimension of the array - columns
+			
+			for (int j = 0; j < columns.length; j++) {	// loop through the digits array
+				matrix[i][j] = Integer.parseInt(columns[j]); // add each digit to the columns array
+			}
+		}
+		return matrix;
 	}
-
-	public static void main(String[] args) {
-		Matrix matrix = new Matrix("9 8 7\n5 3 2\n6 6 7");
-		System.out.println(matrix.getRowsCount());
-	}
-
 }
-
-//ArrayList<String> rows = new ArrayList<String>();
-//ArrayList<String> columns = new ArrayList<String>();
-//
-//String matrix = "9 8 7\n5 3 2\n6 6 7";
-//
-//Pattern p = Pattern.compile(".*.");
-//Matcher m = p.matcher(matrix);
-//
-//while (m.find()) {
-//	String trimmed = m.group().replaceAll("\\s", "");
-//	rows.add(trimmed);
-//}
-//
-///*
-// * line 0 char at 0
-// * line 1 char at 0
-// * line 2 char at 0
-// * 
-// * line 0 char at 1
-// * line 1 char at 1
-// * line 2 char at 1
-// * 
-// * line 0 char at 2
-// * line 1 char at 2
-// * line 2 char at 2
-// */
-//
-//int rowLength = rows.get(0).length();	// get the length of a row
-//for (int i = 0; i <= rowLength - 1;  i++) { // loop through every column
-//	StringBuilder sb = new StringBuilder(); // Create empty string to hold the individual chars (digit on each row)
-//	for (int j = 0; j <= rows.size() - 1; j++) { // loop through every row
-//		char c = rows.get(j).charAt(i); // get the digit on the specified index 0,1,2 ...
-//		sb.append(c); // Append to string
-//	}
-//	columns.add(sb.toString()); // Add to array
-//}
-//
-//for (String r : rows) {
-//	System.out.println(r);
-//}
-//System.out.println("-------------");
-//
-//for (String c : columns) {
-//	System.out.println(c);
-//}
