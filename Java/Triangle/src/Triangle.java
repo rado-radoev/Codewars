@@ -1,46 +1,89 @@
 
 public class Triangle {
 	
-	private int a;
-	private int b;
-	private int c;
+	private double a;
+	private double b;
+	private double c;
 	private TriangleException te;
 
-	public Triangle (int a, int b, int c) {
-		if (a <= 0 || b <= 0 || c <= 0) {
-			te = new TriangleException(); // throw exception if a, b or c is lower than 0 
-		}
+	public Triangle (double a, double b, double c) {
 		setA(a);
 		setB(b);
 		setC(c);
 	}
 
-	public int getA() {
+	public double getA() {
 		return a;
 	}
 
-	public void setA(int a) {
+	public void setA(double a) {
 		this.a = a;
 	}
 
-	public int getB() {
+	public double getB() {
 		return b;
 	}
 
-	public void setB(int b) {
+	public void setB(double b) {
 		this.b = b;
 	}
 
-	public int getC() {
+	public double getC() {
 		return c;
 	}
 
-	public void setC(int c) {
+	public void setC(double c) {
 		this.c = c;
 	}
 	
-	public static void main(String[] args) {
-		Triangle tr = new Triangle(0,2,3);
+	
+	private boolean isEquilateral() {
+		if ((getA() == getB()) &&(getB() == getC())) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isIsosceles() {
+		if ( (getA() == getC()) || (getB() == getC())  || (getA() == getB()) ) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	private boolean isScalene() {
+		if ( (getA() != getB()) && (getA() != getC()) && (getB() != getC())  ) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isTriangle() {
+		if (getA() <= 0 || getB() <= 0 || getC() <= 0) {
+			return false;
+		}
+		
+		if ( (getA() + getB() < getC()) ||  (getA() + getC() < getB()) || (getB() + getC() < getA())) {
+			return false;
+		}
+		
+		return true;
 	}
 
+	
+	public TriangleKind getKind() throws TriangleException {
+		if (isTriangle()) {
+			if (isEquilateral()) {
+				return TriangleKind.EQUILATERAL;
+			}
+			else if (isIsosceles()) {
+				return TriangleKind.ISOSCELES;
+			}
+			else if (isScalene()) {
+				return TriangleKind.SCALENE;
+			}
+		}
+		throw te = new TriangleException();
+	}
 }
