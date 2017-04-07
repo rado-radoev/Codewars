@@ -4,12 +4,12 @@ public class Triangle {
 	private double a;
 	private double b;
 	private double c;
-	private TriangleException te;
 
-	public Triangle (double a, double b, double c) {
+	public Triangle (double a, double b, double c) throws TriangleException {
 		setA(a);
 		setB(b);
 		setC(c);
+		isTriangle();
 	}
 
 	public double getA() {
@@ -51,39 +51,24 @@ public class Triangle {
 		return false;
 	}
 	
-	
-	private boolean isScalene() {
-		if ( (getA() != getB()) && (getA() != getC()) && (getB() != getC())  ) {
-			return true;
-		}
-		return false;
-	}
-	
-	private boolean isTriangle() {
+	private void isTriangle() throws TriangleException {
 		if (getA() <= 0 || getB() <= 0 || getC() <= 0) {
-			return false;
+			throw new TriangleException();
+		} else if ( (getA() + getB() <= getC()) ||  (getA() + getC() <= getB()) || (getB() + getC() <= getA())) {
+			throw new TriangleException();
 		}
-		
-		if ( (getA() + getB() < getC()) ||  (getA() + getC() < getB()) || (getB() + getC() < getA())) {
-			return false;
-		}
-		
-		return true;
 	}
 
 	
-	public TriangleKind getKind() throws TriangleException {
-		if (isTriangle()) {
-			if (isEquilateral()) {
-				return TriangleKind.EQUILATERAL;
-			}
-			else if (isIsosceles()) {
-				return TriangleKind.ISOSCELES;
-			}
-			else if (isScalene()) {
-				return TriangleKind.SCALENE;
-			}
+	public TriangleKind getKind() {
+		if (isEquilateral()) {
+			return TriangleKind.EQUILATERAL;
 		}
-		throw te = new TriangleException();
+		else if (isIsosceles()) {
+			return TriangleKind.ISOSCELES;
+		}
+		else {
+			return TriangleKind.SCALENE;
+		}
 	}
 }
