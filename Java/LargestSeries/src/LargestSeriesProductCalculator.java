@@ -21,11 +21,11 @@ class LargestSeriesProductCalculator {
     	char[] arrChar = s.toCharArray();
     	int[] arr = new int[arrChar.length];
     	for (int k = 0; k < arrChar.length; k++) {
-    		arr[k] = arrChar[k];
+    		arr[k] =  Character.digit(arrChar[k], 10);
     	}
     	
     	
-        int n = arr.length;
+        int n = 2;
         // max positive product ending at the current position
         int max_ending_here = 1;
  
@@ -88,7 +88,7 @@ class LargestSeriesProductCalculator {
  
     public static void main (String[] args) {
  
-    	String s = "1230782";
+    	String s = "576802143";
         System.out.println("Maximum Sub array product is "+
         		calculateLargestProductForSeriesLength(s));
     }
