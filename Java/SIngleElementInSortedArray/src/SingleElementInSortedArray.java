@@ -1,8 +1,6 @@
+import javax.naming.directory.SearchControls;
+
 //SIngleElementInSortedArray
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 public class SingleElementInSortedArray {
 
@@ -12,24 +10,39 @@ public class SingleElementInSortedArray {
 	}
 	
 	public static int singleNonDuplicate(int[] nums) {
-		HashMap<Integer, Boolean> myHash = new HashMap<Integer, Boolean>();
-		Set<Map.Entry<Integer, Boolean>> entrySet = myHash.entrySet();
+		int low = 0;
+		int high = nums.length - 1;
+		search(nums, low, high);
+		return 0;
+	}
+	
+	private static void search(int[] arr, int low, int high) {
+		if (low > high) 
+			return;
 		
-		for (int i = 0; i < nums.length; i++) {
-			if (!myHash.containsKey(nums[i])) {
-				myHash.put(nums[i], false);
+		if (low == high) {
+			System.out.printf("The required elemnt is %d",arr[low] );
+			return;
+		}
+		
+		int mid = (low + high) / 2;
+		
+		if (mid % 2 == 0) {
+			if (arr[mid] == arr[mid+1]){
+				search(arr, mid + 2, high);
 			}
 			else {
-					
+				search(arr, low, mid);
 			}
 		}
-		
-		for (Entry entry : entrySet) {
-			if (!(boolean)entry.getValue()) {
-				return (int)entry.getKey();
+		else {
+			if (arr[mid] == arr[mid-1]) {
+				search(arr, mid - 2, high);
+			}
+			else {
+				search(arr, low, mid - 1);
 			}
 		}
-		return 0;
 	}
 
 }
