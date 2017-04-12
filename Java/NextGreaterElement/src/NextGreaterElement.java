@@ -6,11 +6,15 @@ public class NextGreaterElement {
 	}
 
 	public static int[] nextGreaterElement(int[] findNums, int[] nums) {
-        int[] nums = new int[findNums.length];
+        int[] numbers = new int[findNums.length];
 		int j = 0;
         
-        for (int i = 0; i < nums.length; i++) {
-			
+        for (int i = 0; i < findNums.length; i++) {
+			for (int k = 0; k < nums.length; k++) {
+				if (nums[k] > findNums[i]) {
+					
+				}
+			}
 		}
     }
 }
