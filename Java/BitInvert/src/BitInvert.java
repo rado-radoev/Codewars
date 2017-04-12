@@ -2,12 +2,12 @@
 public class BitInvert {
 
 	public static void main(String[] args) {
-		System.out.println(invertBits(5));
+		System.out.println(findComplement(5));
 
 	}
 	
-	public static int invertBits(int n) {
-		return ~n;
-	}
+	public static int findComplement(int num) {
+        return ~num & (Integer.highestOneBit(num) - 1);
+    }
 
 }
