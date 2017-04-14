@@ -3,23 +3,15 @@ public class FindTheDifference {
 
 	public static void main(String[] args) {
 		String s = "abcd";
-		String t = "abcde";
+		String t = "abced";
 		
-		boolean notFound = true;
-		int i = s.length();
-//		for (int i = 0; i < s.length();i++) {
-//			if (s.charAt(i) == t.charAt(i)) {
-//				found = true;
-//			}
-//		}
+		int charCode = t.charAt(s.length());
+        // Iterate through both strings and char codes
+        for (int i = 0; i < s.length(); ++i) {
+              charCode -= (int)s.charAt(i);
+              charCode += (int)t.charAt(i); 
+        }
+       System.out.println((char)charCode);
 		
-		while (notFound) {
-			if (s.charAt(i) == t.charAt(i)) {
-				notFound = false;
-			}
-			i++;
-		}
-                          
 	}
-
 }
