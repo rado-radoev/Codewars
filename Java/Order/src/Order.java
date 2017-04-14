@@ -42,7 +42,7 @@ public class Order {
 			int key = keySetIterator.next();
 			output.append(myMap.get(key) + " ");
 		}
-		//String out = output.substring(0, (output.length() - 1));
+
 		return output.toString().trim();
 	}
 
