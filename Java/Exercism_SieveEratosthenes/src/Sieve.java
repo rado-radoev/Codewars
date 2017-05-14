@@ -17,7 +17,7 @@ public class Sieve {
 		this.arr = new boolean[maxNumber + 1];	// Create boolean array of length maxNumber. We want our array to start always from 2. 0 and 1 are not primes
 	}
 	
-	// iterate through the array and set to false any numbers that are not prime.
+	// iterate through the array and set to true any numbers that are not prime.
 	public ArrayList<Integer> getPrimes() {
 		
 		// Find the sqrt of the maxNumber. That would be the last number to check. 
