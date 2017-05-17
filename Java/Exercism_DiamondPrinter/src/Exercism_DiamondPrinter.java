@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 //http://exercism.io/exercises/java/diamond/readme
 // asci char map: http://www.asciitable.com/
 
@@ -34,7 +36,39 @@ public class Exercism_DiamondPrinter {
 		 * String.join("", Collections.nCopies(n, s));
 		 * 
 		 * */
+		
+		char edge = 'C'; // 67
+		int iterations = 26 - (90 - edge); // 26 - 23 = 3
+		
+		for (int i = 0; i < iterations; i++) { // 0 1 2
+			char toPrint = (char) (65 + i); // 65 66 67
+			
+			System.out.printf("\"%s%s%s\"%n", 
+					repeatChar(' ', (iterations - i) -1),	// spaces
+					toPrint != 'A' ? toPrint + repeatChar(' ', i) + toPrint : toPrint,								// letter
+	    // spaces
+							repeatChar(' ', (iterations - i) -1)										// letter
+															// spaces
+					);
+		}
+//		for (int i = iterations - 2; i >= 0; i--) {
+//			char toPrint = (char) (65 + i);
+//			System.out.printf("\"%s%s%s%s\"%n", 
+//					String.join("", Collections.nCopies((iterations - i) - 1, " ")),
+//					toPrint,
+//					iterations > 0 ? String.join("", Collections.nCopies((iterations - i) - 1, " ")) : "",
+//					String.join("", Collections.nCopies((iterations - i) - 1, " ")));
+//		}
 
+	}
+	
+	private static String repeatChar(char character, int repeat)  {
+		String output = "";
+		for (int i = 0; i < repeat; i++) {
+			output += character;
+		}
+		
+		return output;
 	}
 
 }
