@@ -37,20 +37,19 @@ public class Exercism_DiamondPrinter {
 		 * 
 		 * */
 		
-		char edge = 'C'; // 67
+		char edge = 'E'; // 67
 		int iterations = 26 - (90 - edge); // 26 - 23 = 3
+		int width = 1 + (iterations * 2);
 		
 		for (int i = 0; i < iterations; i++) { // 0 1 2
 			char toPrint = (char) (65 + i); // 65 66 67
 			
 			System.out.printf("\"%s%s%s\"%n", 
-					repeatChar(' ', (iterations - i) -1),	// spaces
-					toPrint != 'A' ? toPrint + repeatChar(' ', i) + toPrint : toPrint,								// letter
-	    // spaces
-							repeatChar(' ', (iterations - i) -1)										// letter
-															// spaces
-					);
+					repeatChar(' ', (iterations - i) -1),
+					toPrint != 'A' ? toPrint + repeatChar(' ', i > 1 ? i + 1 : i) + toPrint : toPrint,
+					repeatChar(' ', (iterations - i) -1));
 		}
+		
 //		for (int i = iterations - 2; i >= 0; i--) {
 //			char toPrint = (char) (65 + i);
 //			System.out.printf("\"%s%s%s%s\"%n", 
