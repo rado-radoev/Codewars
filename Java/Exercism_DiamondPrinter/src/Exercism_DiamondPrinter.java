@@ -30,6 +30,9 @@ public class Exercism_DiamondPrinter {
 		 *
 		 * starting row 1 add the number of iterations as spaces before and after the letter
 		 * 
+		 * create a string made up of n copies of s
+		 * String.join("", Collections.nCopies(n, s));
+		 * 
 		 * */
 
 	}
