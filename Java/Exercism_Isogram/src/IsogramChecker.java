@@ -22,10 +22,4 @@ public class IsogramChecker {
 		
 		return true;
 	}
-	
-	public static void main(String[] args) {
-        IsogramChecker iso = new IsogramChecker();
-        assertFalse(iso.isIsogram("éléphant"));
-	}
-
 }
