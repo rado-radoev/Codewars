@@ -28,7 +28,7 @@ public class PhoneNumberTest {
         );
     }
 
-    @Ignore("Remove to run test")
+
     @Test
     public void cleansNumberWithDots() {
         final String expectedNumber = "1234567890";
@@ -39,7 +39,7 @@ public class PhoneNumberTest {
         );
     }
 
-    @Ignore("Remove to run test")
+
     @Test
     public void cleansNumberWithMultipleSpaces() {
         final String expectedNumber = "1234567890";
@@ -50,7 +50,7 @@ public class PhoneNumberTest {
         );
     }
 
-    @Ignore("Remove to run test")
+
     @Test
     public void invalidWhen9Digits() {
         expectedException.expect(IllegalArgumentException.class);
@@ -58,7 +58,7 @@ public class PhoneNumberTest {
         new PhoneNumber("123456789");
     }
 
-    @Ignore("Remove to run test")
+
     @Test
     public void invalidWhen11Digits() {
         expectedException.expect(IllegalArgumentException.class);
@@ -66,7 +66,7 @@ public class PhoneNumberTest {
         new PhoneNumber("21234567890");
     }
 
-    @Ignore("Remove to run test")
+
     @Test
     public void validWhen11DigitsAndFirstIs1() {
         final String expectedNumber = "1234567890";
@@ -77,7 +77,7 @@ public class PhoneNumberTest {
         );
     }
 
-    @Ignore("Remove to run test")
+
     @Test
     public void invalidWhen12Digits() {
         expectedException.expect(IllegalArgumentException.class);
@@ -85,7 +85,7 @@ public class PhoneNumberTest {
         new PhoneNumber("321234567890");
     }
 
-    @Ignore("Remove to run test")
+
     @Test
     public void invalidWithLetters() {
         expectedException.expect(IllegalArgumentException.class);
@@ -93,7 +93,7 @@ public class PhoneNumberTest {
         new PhoneNumber("123-abc-7890");
     }
 
-    @Ignore("Remove to run test")
+
     @Test
     public void invalidWithPunctuation() {
         expectedException.expect(IllegalArgumentException.class);
@@ -101,7 +101,7 @@ public class PhoneNumberTest {
         new PhoneNumber("123-@:!-7890");
     }
 
-    @Ignore("Remove to run test")
+
     @Test
     public void invalidWithRightNumberOfDigitsButLettersMixedIn() {
         expectedException.expect(IllegalArgumentException.class);
