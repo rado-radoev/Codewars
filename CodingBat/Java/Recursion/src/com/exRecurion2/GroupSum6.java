@@ -11,11 +11,29 @@ package com.exRecurion2;
 public class GroupSum6 {
 
 	public static void main(String[] args) {
-
+		int[] arr = {5, 2, 4, 6};
+		System.out.println(groupSum6(0, arr, 9));
 	}
 	
 	public static boolean groupSum6(int start, int[] nums, int target) {
 		
+		//if (target == 0) return true;
+		
+		if (start >= nums.length) {
+			if (target == 0) return true;
+			return false;
+		}
+		
+		if (nums[start] == 6) { 
+			target -= nums[start];
+			return groupSum6(start + 1, nums, target);
+		}
+		
+		if(groupSum6(start + 1, nums, target - nums[start]))
+			return true;
+		
+		
+		return groupSum6(start + 1, nums, target);
 	}
 
 }

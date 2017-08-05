@@ -14,50 +14,79 @@ package com.exRecurion2;
  */
 
 public class groupSum {
+	
+	static String indent = "";
+	static final boolean debugging = true;
 
 	public static void main(String[] args) {
 		int[] arr = {2,4,8};
-		System.err.println(groupSum(0, arr, 10));
+		System.out.println(groupSum(0, arr, 10));
+	}
+	
+	public static void enter(int start, int[] nums, int target) {
+		if (debugging) {
+		System.out.println(indent + " Entering at index: " + start +
+				", nums = " + (start == nums.length ? "_" : nums[start]) + 
+				", target is: " + target);
+		indent = indent + " | ";
+		}
+	}
+	
+	public static boolean yes(int start, int[] nums, int target) {
+		if (debugging) {
+		indent = indent.substring(3);
+		System.out.println(indent + "Index: " + start +
+				", nums = " + (start == nums.length ? "_" : nums[start]) + 
+				", target is: " + target+  
+				" --> returns true");
+		}
+		return true;
+	}
+	
+	public static boolean no(int start, int[] nums, int target) {
+		if (debugging) {
+		indent = indent.substring(3);
+		System.out.println(indent + "Index: " + start +
+				", nums = " + (start == nums.length ? "_" : nums[start]) + 
+				", and target: " + target +  
+				" --> returns false");
+		}
+		return false;
 	}
 
 	public static boolean groupSum(int start, int[] nums, int target) {
 
-		  // Base case: if there are no numbers left, then there is a
-		  // solution only if target is 0.
-		  if (start >= nums.length) return (target == 0);
-		  
-		  // Key idea: nums[start] is chosen or it is not.
-		  // Deal with nums[start], letting recursion
-		  // deal with all the rest of the array.
-		  
-		  // Recursive call trying the case that nums[start] is chosen --
-		  // subtract it from target in the call.
-		  if (groupSum(start + 1, nums, target - nums[start])) return true;
-		  
-		  // Recursive call trying the case that nums[start] is not chosen.
-		  if (groupSum(start + 1, nums, target)) return true;
-		  
-		  // If neither of the above worked, it's not possible.
-		  return false;		
+		enter(start, nums, target);
 		
+		if (target == 0) return yes(start, nums, target);
 		
+		if (start == nums.length) return no(start, nums, target);
+
+		if (groupSum(start + 1, nums, target - nums[start]))
+			return yes(start, nums, target);
 		
-		
-		
-		
-//		if (target == 0)
-//			return true;
-//		
-//		if (start == nums.length)
-//			return false;
-//		
-//
-//		
-//		if (groupSum(start + 1, nums, target - nums[start]))
-//			return true;
-//		
-//		return groupSum(start + 1, nums, target);
-		
-		
+		return groupSum(start + 1, nums, target);
+
 	}
 }
+
+
+/*
+  // Base case: if there are no numbers left, then there is a
+  // solution only if target is 0.
+  if (start >= nums.length) return (target == 0);
+  
+  // Key idea: nums[start] is chosen or it is not.
+  // Deal with nums[start], letting recursion
+  // deal with all the rest of the array.
+  
+  // Recursive call trying the case that nums[start] is chosen --
+  // subtract it from target in the call.
+  if (groupSum(start + 1, nums, target - nums[start])) return true;
+  
+  // Recursive call trying the case that nums[start] is not chosen.
+  if (groupSum(start + 1, nums, target)) return true;
+  
+  // If neither of the above worked, it's not possible.
+  return false;		
+*/
