@@ -3,6 +3,8 @@ package com.Functional1;
 /*Given a list of strings, return a list where each string has all its "x" removed.*/
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.Arrays;
 
 public class NoX {
@@ -10,12 +12,19 @@ public class NoX {
 	public static void main(String[] args) {
 		String[] strs = {"vox", "mox", "pox"};
 		List<String> strss = Arrays.asList(strs);
-		nox(strss);
+		System.out.println(nox("vox"));
 	}
 
-	public static void nox(List<String> strings) {
+	public static String nox(String strings) {
+		return strings.chars()
+			.mapToObj(i -> (char)i)
+			.filter(c -> c != 'x')
+			.map(i -> i.toString())
+			.collect(Collectors.joining(""));
+	}
+	
+	public static List<String> nox(List<String> strings) {
 		strings.stream()
-			.map(s -> s.toCharArray())
-			.forEach(System.out::println);
+			.collect(Collectors.groupingBy(Collectors.joining(), List<String>::new, Collectors.toList()));
 	}
 }
