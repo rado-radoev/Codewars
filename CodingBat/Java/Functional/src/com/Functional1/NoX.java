@@ -12,7 +12,7 @@ public class NoX {
 	public static void main(String[] args) {
 		String[] strs = {"vox", "mox", "pox"};
 		List<String> strss = Arrays.asList(strs);
-		System.out.println(nox("vox"));
+		System.out.println(nox(strss));
 	}
 
 	public static String nox(String strings) {
@@ -24,7 +24,10 @@ public class NoX {
 	}
 	
 	public static List<String> nox(List<String> strings) {
-		strings.stream()
-			.collect(Collectors.groupingBy(Collectors.joining(), List<String>::new, Collectors.toList()));
+		return strings.stream()
+			.map(c -> c.chars().mapToObj(x -> (char)x).filter(y -> y != 'x').map(i -> i.toString()).collect(Collectors.joining("")))
+			.collect(Collectors.toList());
+					
+					
 	}
 }
