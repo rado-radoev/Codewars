@@ -1,7 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Solution {
@@ -21,7 +17,7 @@ public class Solution {
 		 
 		 for (int i = splitted.length - 1; i >= 0; i--) {
 			 arr[i] = Integer.valueOf(splitted[i]);
-			 System.out.println(arr[i]);
+			 System.out.print(arr[i] + " ");
 		 }
 		 
 		 
