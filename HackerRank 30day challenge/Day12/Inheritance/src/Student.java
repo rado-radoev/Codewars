@@ -29,7 +29,7 @@ public class Student extends Person {
 		}
 		
 		score /= scores.length;
-		System.out.println(score);
+		//System.out.println(score);
 		
 		if (isBetween(score, 90, 100, true))
 			return 'O';
