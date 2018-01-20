@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 class KindergartenGarden {
 	
@@ -23,26 +24,41 @@ class KindergartenGarden {
 
     List<Plant> getPlantsOfStudent(String student) {
     		String[] gardenLines = garden.split("\n");
-    	
-    		int index = 0;
-    		for (; index < students.length; index++) {
-    	   		if (student.equals(students[index])) {
-    	   			break;
-    	   		}
-       }
+    		
+    		int index = binarySearch(students, student);
+    		
+    		if (index == -1)
+    			throw new NoSuchElementException(String.format("%s is not in this class", student));
+
+    		int plant1Index = ((1 + index) * 2) - 2;
+    		int plant2Index = ((1 + index) * 2) - 1;
     		
     		List<Plant> plants = new ArrayList<Plant>();
     		
-    		int plant2Index = ((1 + index) * 2) - 1;
-    		int plant1Index = ((1 + index) * 2) - 2;
-    		   		
-    		plants.add(Plant.getPlant(gardenLines[0].charAt(plant1Index)));
-    		plants.add(Plant.getPlant(gardenLines[0].charAt(plant2Index)));
-    		
-    		plants.add(Plant.getPlant(gardenLines[1].charAt(plant1Index)));
-    		plants.add(Plant.getPlant(gardenLines[1].charAt(plant2Index)));
-    		
+    		for (int i = 0; i < gardenLines.length; i++) {
+        		plants.add(Plant.getPlant(gardenLines[i].charAt(plant1Index)));
+        		plants.add(Plant.getPlant(gardenLines[i].charAt(plant2Index)));	
+    		}
+
     		return plants;
+    }
+    
+    private int binarySearch(String[] arrayToSearch, String stringToSearch) {
+    		int low = 0;
+    		int high = arrayToSearch.length - 1;
+    		int mid;
+    		
+    		while (low <= high) {
+    			mid = (low + high) / 2;
+    			if (arrayToSearch[mid].compareTo(stringToSearch) < 0)
+    				low = mid + 1;
+    			else if (arrayToSearch[mid].compareTo(stringToSearch) > 0)
+    				high = mid - 1;
+    			else
+    				return mid;
+    		}
+    		
+    		return -1;
     }
 
 }
