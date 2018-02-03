@@ -5,10 +5,10 @@ class Calculator implements AdvancedArithmetic {
 
 	private int divisor;
 	
-	@Override
-	public int divisorSum(int n) {
+	
+	public int divisorSum1(int n) {
 		
-		divisor = n - 1; 
+		divisor = n; 
 		int sum = 0;
 		
 		
@@ -20,6 +20,26 @@ class Calculator implements AdvancedArithmetic {
 		}
 		
 		return sum;
+	}
+
+
+	
+	
+	
+	@Override
+	public int divisorSum(int n) {
+
+		return divisorSum(n, n, 0);
+	}
+	
+	private int divisorSum(int n, int divisor, int sum) {
+		if (divisor < 1) return sum;
+
+		sum += (n % divisor == 0) ? divisor: 0;
+		divisor--;
+		
+		return divisorSum(n, divisor, sum);
+		
 	}
 	
 }
