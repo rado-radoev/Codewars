@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /*
  * FindPrimes.java
  */
@@ -9,11 +11,16 @@
 public class Solution {
        
     public static void main(String[] args) {
-        System.out.println("Prime numbers < 10k:");
-        for (int i = 0; i < 10000;i++) {
-        	if (isPrime(i)) {
-        		System.out.println(i); // print only prime numbers
-        	}
+    
+    		Scanner in = new Scanner(System.in);
+    		int numbers = in.nextInt();
+    	
+        for (int i = 0; i < numbers;i++) {
+        		if (isPrime(in.nextInt())) {
+	        		System.out.println("Prime"); // print only prime numbers
+	        	} else {
+	        		System.out.println("Not prime"); // print only prime numbers
+	        	}
         }
     }
     
