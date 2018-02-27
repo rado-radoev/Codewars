@@ -1,6 +1,5 @@
 import java.util.Comparator;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Solution implements Comparator<Integer> {
 
