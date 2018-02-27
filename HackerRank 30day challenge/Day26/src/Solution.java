@@ -4,9 +4,10 @@ import java.util.regex.Pattern;
 
 public class Solution implements Comparator<Integer> {
 
-	private int hackos;
+	private static int hackos;
 	
 	public static void main(String[] args) {
+		Solution s = new Solution();
 
 		Scanner in = new Scanner(System.in);
 		
@@ -14,7 +15,7 @@ public class Solution implements Comparator<Integer> {
 		int returnMonth = 0;
 		int returnYear = 0;
 		
-		int exepectedDay = 0;
+		int expectedDay = 0;
 		int expectedMonth = 0;
 		int expectedYear = 0;
 	
@@ -22,11 +23,29 @@ public class Solution implements Comparator<Integer> {
 		returnMonth = in.nextInt();
 		returnYear = in.nextInt();
 	
-		exepectedDay = in.nextInt();
+		expectedDay = in.nextInt();
 		expectedMonth = in.nextInt();
 		expectedYear = in.nextInt();
 		
+		in.close();
 		
+		if (s.calculateLate(returnYear, expectedYear) == 1)
+			hackos = 10000;
+		else if (s.calculateLate(returnYear, expectedYear) == 0 && 
+				s.calculateLate(returnMonth, expectedMonth) == 1) {
+			hackos = 500 * (returnMonth - expectedMonth);
+		}
+		else if (s.calculateLate(returnYear, expectedYear) == 0 && 
+				s.calculateLate(returnMonth, expectedMonth) == 0 &&
+				s.calculateLate(returnDay, expectedDay) == 1) {
+			hackos = 15 * (returnDay - expectedMonth);
+		} else if (s.calculateLate(returnYear, expectedYear) <= 0 &&
+					s.calculateLate(returnMonth, expectedMonth) <= 0 &&
+					s.calculateLate(returnDay, expectedDay) <= 0) {
+			hackos = 0;
+		}
+		
+		System.out.println(hackos);
 		
 	}
 	
@@ -41,7 +60,6 @@ public class Solution implements Comparator<Integer> {
 			return 1;
 	}
 	
-	@Override
 	public int compare(Integer returned, Integer expected) {
 		return returned.compareTo(expected);
 	}
