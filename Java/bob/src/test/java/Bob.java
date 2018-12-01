@@ -21,7 +21,7 @@ public class Bob {
 		
 		answers.put("question", "Sure.");
 		answers.put("yell", "Whoa, chill out!");
-		answers.put("yell quesiton", "Calm down, I know what I'm doing!");
+		answers.put("yell question", "Calm down, I know what I'm doing!");
 		answers.put("empty", "Fine. Be that way!");
 		answers.put("other", "Whatever.");
 		
@@ -63,21 +63,28 @@ public class Bob {
 	}
 	
 	private Boolean isAddressUpper(String address) {
+		
+		boolean hasAtLeastOneChar = false;
+		boolean isAllUpperCase = true;
+		
 		for (char c : address.toCharArray()) {
 			if (!Character.isAlphabetic(c)) continue;
-			if (!Character.isUpperCase(c)) return false;
+			if (Character.isLetter(c)) hasAtLeastOneChar = true;
+			if (Character.isLowerCase(c)) isAllUpperCase = false;;
 		}
-		
-		return true;
+		return hasAtLeastOneChar && isAllUpperCase;
 	}
 	
 	private Boolean isLastCharQuestionMark(String address) {
-		return address.charAt(address.length() - 1) == '?';
+		if (address.length() > 0)
+			return address.charAt(address.length() - 1) == '?';
+		
+		return false;
 	}
 	
 	private Boolean isAddressEmpty(String address) {
 		boolean isEmpty = false;
-		String pattern = "\\s[^\\w]";
+		String pattern = "\\s[^\\w\\?]";
 		Pattern p = Pattern.compile(pattern);
 		Matcher m = p.matcher(address);
 		
@@ -88,6 +95,7 @@ public class Bob {
 		
 		return isEmpty;
 	}
+
 }	
 
 
