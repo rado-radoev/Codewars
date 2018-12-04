@@ -1,15 +1,25 @@
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.concurrent.Callable; 
+import java.util.concurrent.FutureTask; 
 
-public class Bob {
+public class Bob implements Runnable, Callable {
 	
 	// Map containing possible answers
 	private static final Map<String, String> ANSWERS = generateAnswers(); 
-	
+	private String message;
 	
 	public Bob() { }
+	
+	public Bob(String message) {
+		this.message = message;
+	}
 
 
 	/**	
@@ -29,12 +39,12 @@ public class Bob {
 	}
 
 		
-	public String hey(String s) {
+	public synchronized String hey(String s) {
 		
 		return checkAddressMeaning(s);
 	}
 	
-	private String checkAddressMeaning(String address) {
+	private synchronized String checkAddressMeaning(String address) {
 
 		// Bob's default answer will be Whatever. 
 		// This answer will be outputted if nothing else applies
@@ -94,6 +104,29 @@ public class Bob {
 		}
 		
 		return isEmpty;
+	}
+
+	@Override
+	public void run() {
+		// Bobber test class
+		Date d = new Date(); 
+        SimpleDateFormat ft = new SimpleDateFormat("hh:mm:ss"); 
+		System.out.println(hey(message));
+		System.out.println(ft.format(d));
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public Object call() throws Exception {
+		/*Bobber2 test class*/
+		return hey(message);
 	}
 
 }	
