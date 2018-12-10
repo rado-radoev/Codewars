@@ -21,7 +21,7 @@ public class BobProtocol {
 		Map<String, String> answers = new HashMap<String, String>();
 		
 		for (PREDEFINDEDANSWERS answer : PREDEFINDEDANSWERS.values()) {
-			answers.put(answer.name().toString().toLowerCase(), answer.quesiton);
+			answers.put(answer.name().toLowerCase(), answer.quesiton);
 		}
 	
 		return answers;
