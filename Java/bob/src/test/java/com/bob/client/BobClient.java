@@ -10,19 +10,22 @@ import java.net.UnknownHostException;
 
 public class BobClient {
 	
-	private final int port = 65432;
-	private final String hostname = Inet4Address.getLocalHost().getHostName();
+	private static int port = 65432;
+	private static String hostname;
 	
-	public BobClient() throws UnknownHostException { }
+	public BobClient() throws UnknownHostException {
+		
+		this.hostname = Inet4Address.getLocalHost().getHostName();
+	}
 	
-	public void chat() {
+	public static void chat() {
 		try (Socket socket = new Socket(hostname, port);
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));) {
 			
 			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 			
-			String fromServer, fromClient;
+			String fromServer = null, fromClient = null;
 			
 			while ((fromServer = in.readLine()) != null) {
 				System.out.print(fromServer);
@@ -32,7 +35,7 @@ public class BobClient {
 				
 				fromClient = stdIn.readLine();
 				if (fromClient != null) {
-					System.out.println(fromClient);
+					//System.out.println(fromClient);
 					out.println(fromClient);
 				}
 			}

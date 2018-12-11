@@ -11,9 +11,7 @@ public class BobConversationStarter {
 		Runnable startServert = () -> {new BobServer();};
 		new Thread(startServert).start();
 		
-		BobClient client = new BobClient();
-		
-		client.chat();
+		BobClient.chat();
 
 	}
 

@@ -20,18 +20,23 @@ public class BobServerMultiTHreaded extends Thread {
 	public void run() {
 		try (PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));) {
-			
+					
 			String inputLine, outputLine;
 			
 			BobProtocol bp = new BobProtocol();
-			//outputLine = bp.hey(null);
+			
+			outputLine = bp.hey("");
+			out.println("");
 			
 			while ((inputLine = in.readLine()) != null) {
+				
 				outputLine = bp.hey(inputLine);
-				out.print(outputLine);
+				out.println(outputLine);
 				
 				if (outputLine.equalsIgnoreCase("Bye.")) break;
 			}
+			
+			socket.close();
 					
 		} catch (Exception e) {
 			e.printStackTrace();
