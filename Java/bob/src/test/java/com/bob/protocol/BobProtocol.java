@@ -55,6 +55,9 @@ public class BobProtocol {
 		else if (isAddressEmpty(new_message)) {
 			bobsAnswer = ANSWERS.get("empty");
 		}
+		else if (new_message.toLowerCase().startsWith("bye")) {
+			bobsAnswer = ANSWERS.get("bye");
+		}
 		
 		return bobsAnswer;
 

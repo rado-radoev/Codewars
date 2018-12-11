@@ -25,6 +25,7 @@ public class BobServerMultiTHreaded extends Thread {
 			
 			BobProtocol bp = new BobProtocol();
 			
+			// This is needed so we start communication with the server
 			outputLine = bp.hey("");
 			out.println("");
 			
@@ -33,7 +34,7 @@ public class BobServerMultiTHreaded extends Thread {
 				outputLine = bp.hey(inputLine);
 				out.println(outputLine);
 				
-				if (outputLine.equalsIgnoreCase("Bye.")) break;
+				if (outputLine.equalsIgnoreCase("Bye.")) { break; }
 			}
 			
 			socket.close();

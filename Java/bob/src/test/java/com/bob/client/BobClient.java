@@ -28,14 +28,12 @@ public class BobClient {
 			String fromServer = null, fromClient = null;
 			
 			while ((fromServer = in.readLine()) != null) {
-				System.out.print(fromServer);
+				System.out.println(fromServer);
 				
 				if (fromServer.equalsIgnoreCase("Bye.")) break;
-				
-				
+								
 				fromClient = stdIn.readLine();
 				if (fromClient != null) {
-					//System.out.println(fromClient);
 					out.println(fromClient);
 				}
 			}
